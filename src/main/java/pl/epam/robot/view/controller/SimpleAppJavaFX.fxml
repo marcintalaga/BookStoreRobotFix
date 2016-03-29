@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<BorderPane layoutX="213.0" layoutY="93.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<top>
+				<MenuBar BorderPane.alignment="CENTER">
+					<menus>
+						<Menu mnemonicParsing="false" text="File">
+							<items>
+								<MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#handleQuitMenuItemAction" text="Close" />
+							</items>
+						</Menu>
+					</menus>
+				</MenuBar>
+			</top>
+			<right>
+				<VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+					<children>
+						<Button fx:id="addButton" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="100.0" text="Add">
+							<VBox.margin>
+								<Insets />
+							</VBox.margin>
+						</Button>
+						<Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemoveAction" prefHeight="25.0" prefWidth="104.0" text="Remove">
+							<VBox.margin>
+								<Insets />
+							</VBox.margin>
+						</Button>
+                  <Button fx:id="getBooksButton" mnemonicParsing="false" onAction="#handleAddBooksToListAction" prefHeight="25.0" prefWidth="102.0" text="Get Books" />
+					</children>
+				</VBox>
+			</right>
+			<center>
+				<ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="371.0" prefViewportWidth="500.0">
+					<content>
+						<ListView fx:id="booksList" editable="true" prefHeight="367.0" prefWidth="496.0" BorderPane.alignment="CENTER" />
+					</content>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+				</ScrollPane>
+			</center>
+			<left>
+				<HBox>
+					<children>
+						<ComboBox fx:id="bookStoreComboBox" prefHeight="25.0" prefWidth="207.0" BorderPane.alignment="TOP_LEFT">
+							<value>
+								<String fx:value="Bookstores" />
+							</value>
+						</ComboBox>
+					</children>
+				</HBox>
+			</left>
+		</BorderPane>
+	</children>
+</fx:root>
