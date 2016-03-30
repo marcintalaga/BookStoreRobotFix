@@ -21,7 +21,7 @@ public class CustomBookstoreHandler {
 	private TextInputDialog name = new TextInputDialog();
 	private TextInputDialog urlPrefix = new TextInputDialog();
 	private TextInputDialog urlSufix = new TextInputDialog();
-	private TextInputDialog urlStep = new TextInputDialog();
+	private TextInputDialog urlStep = new TextInputDialog("a");
 	private TextInputDialog start = new TextInputDialog();
 	private TextInputDialog finish = new TextInputDialog();
 	private TextInputDialog pattern = new TextInputDialog();
