@@ -7,6 +7,15 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import pl.epam.robot.entity.Author;
+import pl.epam.robot.entity.Book;
+import pl.epam.robot.entity.Bookstore;
+import pl.epam.robot.entity.Category;
+import pl.epam.robot.entity.CategoryType;
+import pl.epam.utils.HibernateUtils;
 
 /**
  * @author Aleksander
@@ -24,6 +33,33 @@ public class FreeBookParser {
 	public static void main(String[] args) {
 		FreeBookParser f = new FreeBookParser();
 		f.freeBooks();
+
+		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		Category category = new Category();
+		category.setCategoryType(CategoryType.horror);
+		session.save(category);
+
+		Author author = new Author();
+		author.setName("Wislawa");
+		author.setSurname("Szymborska");
+		session.save(author);
+
+		Bookstore store = new Bookstore();
+		store.setName("Selkar");
+		session.save(store);
+
+		Book book = new Book();
+		book.setCategory(category);
+		book.setAuthor(author);
+		book.setBookstore(store);
+		book.setTitle("Dupa123");
+
+		session.save(book);
+		session.getTransaction().commit();
+		sessionFactory.close();
 
 	}
 
