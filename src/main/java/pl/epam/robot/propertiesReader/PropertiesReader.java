@@ -11,10 +11,14 @@ import org.apache.log4j.Logger;
 public class PropertiesReader {
 	final static Logger bookslogger = Logger.getLogger("booksLogger");
 	final static Logger logger = Logger.getLogger("logger");
-	private Properties properties = new Properties();
-	private InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
 	private static final String PROPERTIES_FILE_NAME = "URL.properties";
 
+	
+	private Properties properties = new Properties();
+	private InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
+	
+
+	
 	public List<String> getBookstoresNames() {
 		int nameSuffix = 1;
 		List<String> bookstoresNamesList = new ArrayList<>();

@@ -27,29 +27,40 @@ public class URLGenerator {
 	 */
 	public List<URL> getUrls() {
 		try {
-		generateUrls();
-		} catch(Exception e) {
+			readFromFile();
+		} catch (Exception e) {
 			logger.error("Incorrect number format");
+		}
+		if (properties != null || !properties.isEmpty()) {
+			generateURL();
+		} else {
+			logger.error("Problem z propertisami");
 		}
 		return urls;
 	}
 
-	private void generateUrls() {
+	private void readFromFile() {
 		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"));
 
 		try {
-
 			properties.load(fileReader);
 		} catch (IOException e) {
 			logger.error("Cant find 'URL.properties' file in resources folder");
 		}
+	}
+
+	/**
+	 * Generates URL
+	 */
+	private void generateURL() {
 		for (int i = 0; i < Integer.parseInt(properties.getProperty("NumberOfURLs")); i++) {
 			urls.add(new URL());
 			if (properties.getProperty("URLStep" + i).isEmpty()) {
 				urls.get(urls.size() - 1).addUrl(properties.getProperty("URLPrefix" + i));
 			} else {
-				for (int j = Integer.parseInt(properties.getProperty("URLStart" + i)); j < Integer.parseInt(properties
-						.getProperty("URLFinish" + i)); j += Integer.parseInt(properties.getProperty("URLStep" + i))) {
+				for (int j = Integer.parseInt(properties.getProperty("URLStart" + i)); j < Integer
+						.parseInt(properties.getProperty("URLFinish" + i)); j += Integer
+								.parseInt(properties.getProperty("URLStep" + i))) {
 					urls.get(urls.size() - 1).addUrl(
 							properties.getProperty("URLPrefix" + i) + j + properties.getProperty("URLSuffix" + i));
 				}

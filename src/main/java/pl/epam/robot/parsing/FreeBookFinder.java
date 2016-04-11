@@ -41,12 +41,9 @@ public class FreeBookFinder {
 	 * @return List<String> freeBooks
 	 */
 	Set<String> getFreeBooks(List<String> urls) {
-
 		for (String url : urls) {
 			Document doc = null;
-
 			try {
-
 				doc = Jsoup.connect(url).get();
 			} catch (IOException e) {
 				logger.error("Cant cant connect to " + url);
@@ -54,7 +51,6 @@ public class FreeBookFinder {
 			}
 			parseWebsite(doc);
 		}
-
 		return freeBooks;
 
 	}
@@ -69,21 +65,16 @@ public class FreeBookFinder {
 	 * @param Document-website
 	 */
 	private void parseWebsite(Document doc) {
-
 		Elements url = doc.select(pattern);
 		for (Element element : url) {
 			if (attr.isEmpty()) {
-
 				freeBooks.add(element.text());
-
 			} else {
-
 				freeBooks.add(element.attr(attr));
 			}
 		}
 		for (String string : freeBooks) {
 			bookslogger.info(string);
 		}
-
 	}
 }

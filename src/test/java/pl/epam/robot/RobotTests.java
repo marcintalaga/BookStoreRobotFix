@@ -1,11 +1,16 @@
 package pl.epam.robot;
+import static org.mockito.Mockito.mock;
 
 import org.testng.annotations.Test;
 
-public class RobotTests {
+import pl.epam.robot.view.controller.Controller;
 
+public class RobotTests {
+	
+	Controller controller;
+	
 	@Test
-	public void testAnything() {
-		assert true;
+	public void create() {
+		controller = mock(Controller.class);		
 	}
 }

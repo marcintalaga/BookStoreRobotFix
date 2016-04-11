@@ -21,7 +21,7 @@ public class CustomBookstoreHandler {
 	private TextInputDialog name = new TextInputDialog();
 	private TextInputDialog urlPrefix = new TextInputDialog();
 	private TextInputDialog urlSufix = new TextInputDialog();
-	private TextInputDialog urlStep = new TextInputDialog("a");
+	private TextInputDialog urlStep = new TextInputDialog();
 	private TextInputDialog start = new TextInputDialog();
 	private TextInputDialog finish = new TextInputDialog();
 	private TextInputDialog pattern = new TextInputDialog();
@@ -123,11 +123,15 @@ public class CustomBookstoreHandler {
 	public void addBookstoreToPropertiesFile() {
 
 		String numberOfURLsValue = getNumberOfURLsValue();
-		File file = new File("/home/szymon/workspace/BookStoreRobot/BookstoreRobot/src/main/resources/URL.properties");
+		String workingDirectory = System.getProperty("user.dir");
+		StringBuilder path = new StringBuilder();
+		path.append(workingDirectory);
+		path.append("/src/main/resources/URL.properties");
+		
+		File file = new File(path.toString());
 		FileWriter fileWritter = null;
 		try {
-			fileWritter = new FileWriter(
-					"/home/szymon/workspace/BookStoreRobot/BookstoreRobot/src/main/resources/URL.properties", true);
+			fileWritter = new FileWriter(path.toString(), true);
 		} catch (IOException e) {
 			logger.error("Cant find 'URL.properties' file");
 		}
@@ -135,7 +139,7 @@ public class CustomBookstoreHandler {
 
 		try {
 			replaceSelected(file, "NumberOfURLs=" + numberOfURLsValue);
-		} catch (IOException e1) {
+		} catch (IOException e) {
 			logger.error("Cant change numberOfURLsValue value");
 		}
 		try {
@@ -162,7 +166,6 @@ public class CustomBookstoreHandler {
 			try {
 				properties.load(inputStream);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				logger.error("Cant find 'URL.properties' file");
 			}
 		}

@@ -35,22 +35,22 @@ public class FreeBookParser {
 	 */
 	public List<BookstoreResources> freeBooks() {
 		loadProperties();
-		int counter =0;
+		int counter = 0;
 		for (int i = 0; i < Integer.parseInt(properties.getProperty("NumberOfURLs")); i++) {
-			if (!Boolean.valueOf(properties.getProperty(("active"+i)))) {
+			if (!Boolean.valueOf(properties.getProperty(("active" + i)))) {
 				continue;
 			}
-			System.out.println(properties.getProperty("name" + i));
+			// System.out.println(properties.getProperty("name" + i));
 			String bookStoreName = properties.getProperty("name" + i);
 			bookslogger.info(bookStoreName);
-			
+
 			try {
-			freeBooks.add(new BookstoreResources(properties.get("URLPrefix" + i).toString(), bookStoreName));
-			finder = new FreeBookFinder(properties.getProperty("pattern" + i), properties.getProperty("attr" + i));
-			freeBooks.get(counter).setBooks(finder.getFreeBooks(urls.get(i).getUrls()));
-			counter++;
-			} catch(NullPointerException e) {
-				//logger.error("Null Pointer Exceptions");
+				freeBooks.add(new BookstoreResources(properties.get("URLPrefix" + i).toString(), bookStoreName));
+				finder = new FreeBookFinder(properties.getProperty("pattern" + i), properties.getProperty("attr" + i));
+				freeBooks.get(counter).setBooks(finder.getFreeBooks(urls.get(i).getUrls()));
+				counter++;
+			} catch (NullPointerException e) {
+				// logger.error("Null Pointer Exceptions");
 			}
 		}
 		return freeBooks;
@@ -62,9 +62,7 @@ public class FreeBookParser {
 	 */
 	private void loadProperties() {
 		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"));
-
 		try {
-
 			properties.load(fileReader);
 		} catch (IOException e) {
 			logger.error("Cant find 'URL.properties' file in resources folder");
