@@ -81,5 +81,10 @@ public class FreeBookParser {
 		} catch (IOException e) {
 			logger.error("Cant find 'URL.properties' file in resources folder");
 		}
+		try {
+			fileReader.close();
+		} catch (IOException e) {
+			logger.error("Cannot close stream" + e.getMessage());
+		}
 	}
 }

@@ -28,7 +28,8 @@ import pl.epam.robot.database.entity.category.CategoryManagerImpl;
 public class FreeBookFinder {
 	final static Logger bookslogger = Logger.getLogger("booksLogger");
 	final static Logger logger = Logger.getLogger("logger");
-	Set<String> freeBooks = new HashSet<String>();
+	
+	Set<Book> freeBooks = new HashSet<Book>();
 	String pattern;
 	String attr;
 
@@ -50,7 +51,7 @@ public class FreeBookFinder {
 	 * @param urls
 	 * @return List<String> freeBooks
 	 */
-	Set<String> getFreeBooks(List<String> urls) {
+	Set<Book> getFreeBooks(List<String> urls) {
 		for (String url : urls) {
 			Document doc = null;
 			try {
@@ -78,9 +79,13 @@ public class FreeBookFinder {
 		Elements url = doc.select(pattern);
 		for (Element element : url) {
 			if (attr.isEmpty()) {
-				freeBooks.add(element.text());
+				Book book = new Book();
+				book.setTitleAndAuthor(element.text());
+				freeBooks.add(book);
 			} else {
-				freeBooks.add(element.attr(attr));
+				Book book = new Book();
+				book.setTitleAndAuthor(element.attr(attr));
+				freeBooks.add(book);
 			}
 		}
 	}
@@ -99,17 +104,14 @@ public class FreeBookFinder {
 		BookstoreManager bm = new BookstoreManagerImpl();
 		bm.saveNewBookstore(bookstore);
 		
-		for (String string : freeBooks) {
-
-			Book book = new Book();
-			book.setTitleAndAuthor(string);
+		for (Book book : freeBooks) {
 			book.setCategory(category);
 			book.setBookstore(bookstore);
 			book.setTags("");
 			BookManager bookmanager = new BookManagerImpl();
 			bookmanager.saveNewBook(book);
 			
-			bookslogger.info(string);
+			bookslogger.info(book);
 		}
 	}
 }

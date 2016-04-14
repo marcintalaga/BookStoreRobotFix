@@ -2,6 +2,8 @@ package pl.epam.robot.parsing;
 
 import java.util.Set;
 
+import pl.epam.robot.database.entity.book.Book;
+
 /**
  * 
  * Value object. Contains List of books from single bookstore + Sting name of
@@ -12,7 +14,7 @@ import java.util.Set;
 public class BookstoreResources {
 	String bookstoreAddress;
 	String bookStoreName;
-	Set<String> books;
+	Set<Book> books;
 
 	public BookstoreResources(String bookstoreAddress, String bookStoreName) {
 		this.bookstoreAddress = bookstoreAddress;
@@ -27,11 +29,11 @@ public class BookstoreResources {
 		return bookStoreName;
 	}
 
-	public Set<String> getBooks() {
+	public Set<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(Set<String> books) {
+	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
 

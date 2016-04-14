@@ -18,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import pl.epam.robot.database.entity.book.Book;
 import pl.epam.robot.parsing.BookstoreResources;
 import pl.epam.robot.parsing.FreeBookParser;
 import pl.epam.robot.propertiesReader.PropertiesReader;
@@ -38,12 +39,12 @@ public class Controller extends AnchorPane implements Initializable {
 	@FXML
 	private ComboBox<String> bookStoreComboBox;
 	@FXML
-	private ListView<String> booksList;
+	private ListView<Book> booksList;
 
-	private Map<String, List<String>> bookstoresWithBooksMap = new HashMap<>();
+	private Map<String, List<Book>> bookstoresWithBooksMap = new HashMap<>();
 	private List<BookstoreResources> bookStoreResources = new ArrayList<>();
 	private ObservableList<String> bookStores = FXCollections.observableArrayList();
-	private ObservableList<String> bookObservableList = FXCollections.observableArrayList();
+	private ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
 
 	public Controller() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(RESOURCE_FXML));
@@ -98,7 +99,7 @@ public class Controller extends AnchorPane implements Initializable {
 	@FXML
 	private void handleAddBooksToListAction() {
 		String selectedBookStore = bookStoreComboBox.getSelectionModel().getSelectedItem();
-		List<String> books = bookstoresWithBooksMap.get(selectedBookStore);
+		List<Book> books = bookstoresWithBooksMap.get(selectedBookStore);
 		if (books == null) {
 			bookObservableList.clear();
 		} else {
@@ -110,7 +111,7 @@ public class Controller extends AnchorPane implements Initializable {
 		FreeBookParser parser = new FreeBookParser();
 		bookStoreResources = parser.freeBooks();
 		for (BookstoreResources bSResources : bookStoreResources) {
-			List<String> booksList = new ArrayList<>();
+			List<Book> booksList = new ArrayList<>();
 			booksList.addAll(bSResources.getBooks());
 			bookstoresWithBooksMap.put(bSResources.getBookstoreName(), booksList);
 		}

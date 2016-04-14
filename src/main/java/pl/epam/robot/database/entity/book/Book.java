@@ -45,6 +45,8 @@ public class Book {
 		this.id = id;
 	}
 
+
+
 	public Category getCategory() {
 		return category;
 	}
@@ -75,5 +77,11 @@ public class Book {
 	
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+	
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", titleAndAuthor=" + titleAndAuthor + ", category=" + category + ", bookstore="
+				+ bookstore + ", tags=" + tags + "]";
 	}
 }
