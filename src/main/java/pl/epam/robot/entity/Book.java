@@ -19,12 +19,12 @@ public class Book {
 	@Column(name = "BOOK_ID", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name="title")
-	private String title;
+	@Column(name="TITLE_AND_AUTHOR")
+	private String titleAndAuthor;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AUTHOR_ID", nullable = false)
-	private Author author;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "AUTHOR_ID", nullable = false)
+//	private Author author;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATEGORY_ID", nullable = false)
@@ -43,21 +43,14 @@ public class Book {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
-	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Author getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
+//	public Author getAuthor() {
+//		return author;
+//	}
+//
+//	public void setAuthor(Author author) {
+//		this.author = author;
+//	}
 
 	public Category getCategory() {
 		return category;
@@ -73,6 +66,14 @@ public class Book {
 
 	public void setBookstore(Bookstore bookstore) {
 		this.bookstore = bookstore;
+	}
+
+	public String getTitleAndAuthor() {
+		return titleAndAuthor;
+	}
+
+	public void setTitleAndAuthor(String titleAndAuthor) {
+		this.titleAndAuthor = titleAndAuthor;
 	}
 	
 	

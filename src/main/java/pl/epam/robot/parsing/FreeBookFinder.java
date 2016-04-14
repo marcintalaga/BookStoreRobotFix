@@ -11,6 +11,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import pl.epam.robot.database.DatabaseSaver;
+import pl.epam.robot.entity.Book;
+import pl.epam.robot.entity.Bookstore;
+import pl.epam.robot.entity.Category;
+import pl.epam.robot.entity.CategoryType;
+
 /**
  * @author Aleksander
  *
@@ -73,7 +79,30 @@ public class FreeBookFinder {
 				freeBooks.add(element.attr(attr));
 			}
 		}
+	}
+
+	/**
+	 * @param bookStoreName
+	 * @param ds
+	 */
+	public void saveBooks(String bookStoreName, DatabaseSaver ds) {
+		
+		Category category = new Category();
+		category.setCategoryType(CategoryType.komedia);
+		ds.saveCategory(category);
+		
+		Bookstore bookstore = new Bookstore();
+		bookstore.setName(bookStoreName);
+		ds.saveBookstore(bookstore);
+		
 		for (String string : freeBooks) {
+
+			Book book = new Book();
+			book.setTitleAndAuthor(string);
+			book.setCategory(category);
+			book.setBookstore(bookstore);
+			ds.saveBook(book);
+			
 			bookslogger.info(string);
 		}
 	}
