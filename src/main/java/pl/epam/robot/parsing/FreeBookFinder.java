@@ -108,6 +108,7 @@ public class FreeBookFinder {
 			book.setTitleAndAuthor(string);
 			book.setCategory(category);
 			book.setBookstore(bookstore);
+			book.setTags("");
 			BookManager bookmanager = new BookManagerImpl();
 			bookmanager.saveNewBook(book);
 			

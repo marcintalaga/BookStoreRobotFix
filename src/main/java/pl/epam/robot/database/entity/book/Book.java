@@ -25,7 +25,6 @@ public class Book {
 	@Column(name="TITLE_AND_AUTHOR")
 	private String titleAndAuthor;
 	
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATEGORY_ID", nullable = false)
 	private Category category;
@@ -33,6 +32,9 @@ public class Book {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "BOOKSTORE_ID", nullable = false)
 	private Bookstore bookstore;
+	
+	@Column(name="TAGS")
+	private String tags;
 
 
 	public int getId() {
@@ -67,5 +69,11 @@ public class Book {
 		this.titleAndAuthor = titleAndAuthor;
 	}
 	
+	public String getTags() {
+		return tags;
+	}
 	
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 }
