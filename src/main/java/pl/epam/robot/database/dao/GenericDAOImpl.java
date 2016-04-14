@@ -1,7 +1,6 @@
 package pl.epam.robot.database.dao;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -61,7 +60,7 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T findByID(Class<?> clazz, BigDecimal id) {
+	public T findByID(Class<?> clazz, Integer id) {
 		Session hibernateSession = this.getSession();
 		T t = null;
 		t = (T) hibernateSession.get(clazz, id);

@@ -20,7 +20,6 @@ import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.category.CategoryManager;
 import pl.epam.robot.database.entity.category.CategoryManagerImpl;
-import pl.robot.enums.CategoryType;
 
 /**
  * @author Aleksander
@@ -92,10 +91,8 @@ public class FreeBookFinder {
 	 */
 	public void saveBooks(String bookStoreName) {
 		
-		Category category = new Category();
-		category.setCategoryType(CategoryType.komedia);
 		CategoryManager cm = new CategoryManagerImpl();
-		cm.saveNewCategory(category);
+		Category category = cm.findCategoryById(1);
 		
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName(bookStoreName);

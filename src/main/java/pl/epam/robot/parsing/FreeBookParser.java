@@ -8,6 +8,11 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+import pl.epam.robot.database.entity.category.Category;
+import pl.epam.robot.database.entity.category.CategoryManager;
+import pl.epam.robot.database.entity.category.CategoryManagerImpl;
+import pl.robot.enums.CategoryType;
+
 /**
  * @author Aleksander
  *
@@ -35,6 +40,11 @@ public class FreeBookParser {
 	public List<BookstoreResources> freeBooks() {
 		loadProperties();
 
+		Category category = new Category();
+		category.setCategoryType(CategoryType.komedia);
+		CategoryManager cm = new CategoryManagerImpl();
+		cm.saveNewCategory(category);
+
 		int counter = 0;
 
 		for (int i = 0; i < Integer.parseInt(properties.getProperty("NumberOfURLs")); i++) {
@@ -52,12 +62,11 @@ public class FreeBookParser {
 			} catch (NullPointerException e) {
 				logger.error(e.getMessage());
 			}
-			
+
 			finder.saveBooks(bookStoreName);
+
 		}
-		
-		
-	
+
 		return freeBooks;
 	}
 

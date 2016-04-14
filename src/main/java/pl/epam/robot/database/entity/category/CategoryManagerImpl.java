@@ -21,5 +21,17 @@ public class CategoryManagerImpl implements CategoryManager {
             HibernateUtils.rollbackTransaction();
         }		
 	}
+	
+	 public Category findCategoryById(Integer id) {
+	        Category category = null;
+	        try {
+	            HibernateUtils.beginTransaction();
+	            category = (Category) categoryDAO.findByID(Category.class, id);
+	            HibernateUtils.commitTransaction();
+	        } catch (HibernateException ex) {
+	            System.out.println("Cos poszlo nie tak przy szukaniu po id!");
+	        }
+	        return category;
+	    }
 
 }
