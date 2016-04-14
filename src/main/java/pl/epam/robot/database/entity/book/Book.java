@@ -1,4 +1,4 @@
-package pl.epam.robot.entity;
+package pl.epam.robot.database.entity.book;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import pl.epam.robot.database.entity.bookstore.Bookstore;
+import pl.epam.robot.database.entity.category.Category;
+
 @Entity
-@Table(name = "BOOK")
+@Table(name = "BOOKS")
 public class Book {
 
 	@Id
@@ -22,9 +25,6 @@ public class Book {
 	@Column(name="TITLE_AND_AUTHOR")
 	private String titleAndAuthor;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "AUTHOR_ID", nullable = false)
-//	private Author author;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATEGORY_ID", nullable = false)
@@ -42,15 +42,6 @@ public class Book {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
-//	public Author getAuthor() {
-//		return author;
-//	}
-//
-//	public void setAuthor(Author author) {
-//		this.author = author;
-//	}
 
 	public Category getCategory() {
 		return category;

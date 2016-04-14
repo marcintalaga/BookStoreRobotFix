@@ -11,11 +11,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import pl.epam.robot.database.DatabaseSaver;
-import pl.epam.robot.entity.Book;
-import pl.epam.robot.entity.Bookstore;
-import pl.epam.robot.entity.Category;
-import pl.epam.robot.entity.CategoryType;
+import pl.epam.robot.database.entity.book.Book;
+import pl.epam.robot.database.entity.book.BookManager;
+import pl.epam.robot.database.entity.book.BookManagerImpl;
+import pl.epam.robot.database.entity.bookstore.Bookstore;
+import pl.epam.robot.database.entity.bookstore.BookstoreManager;
+import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
+import pl.epam.robot.database.entity.category.Category;
+import pl.epam.robot.database.entity.category.CategoryManager;
+import pl.epam.robot.database.entity.category.CategoryManagerImpl;
+import pl.robot.enums.CategoryType;
 
 /**
  * @author Aleksander
@@ -85,15 +90,17 @@ public class FreeBookFinder {
 	 * @param bookStoreName
 	 * @param ds
 	 */
-	public void saveBooks(String bookStoreName, DatabaseSaver ds) {
+	public void saveBooks(String bookStoreName) {
 		
 		Category category = new Category();
 		category.setCategoryType(CategoryType.komedia);
-		ds.saveCategory(category);
+		CategoryManager cm = new CategoryManagerImpl();
+		cm.saveNewCategory(category);
 		
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName(bookStoreName);
-		ds.saveBookstore(bookstore);
+		BookstoreManager bm = new BookstoreManagerImpl();
+		bm.saveNewBookstore(bookstore);
 		
 		for (String string : freeBooks) {
 
@@ -101,7 +108,8 @@ public class FreeBookFinder {
 			book.setTitleAndAuthor(string);
 			book.setCategory(category);
 			book.setBookstore(bookstore);
-			ds.saveBook(book);
+			BookManager bookmanager = new BookManagerImpl();
+			bookmanager.saveNewBook(book);
 			
 			bookslogger.info(string);
 		}

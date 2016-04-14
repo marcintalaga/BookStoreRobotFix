@@ -1,19 +1,18 @@
 package pl.epam.utils;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtils {
 
-	private static final SessionFactory sessionFactory = buildSessionFactory();
+	private static final SessionFactory sessionFactory;
 
-	private static SessionFactory buildSessionFactory() {
+	static {
 		try {
-
-			return new Configuration().configure().buildSessionFactory();
-
+			sessionFactory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
-
+			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
@@ -22,7 +21,26 @@ public class HibernateUtils {
 		return sessionFactory;
 	}
 
-	public static void shutdown() {
-		getSessionFactory().close();
+	public static Session beginTransaction() {
+		Session hibernateSession = HibernateUtils.getSession();
+		hibernateSession.beginTransaction();
+		return hibernateSession;
+	}
+
+	public static void commitTransaction() {
+		HibernateUtils.getSession().getTransaction().commit();
+	}
+
+	public static void rollbackTransaction() {
+		HibernateUtils.getSession().getTransaction().rollback();
+	}
+
+	public static void closeSession() {
+		HibernateUtils.getSession().close();
+	}
+
+	public static Session getSession() {
+		Session hibernateSession = sessionFactory.getCurrentSession();
+		return hibernateSession;
 	}
 }

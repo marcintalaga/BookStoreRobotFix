@@ -1,4 +1,4 @@
-package pl.epam.robot.entity;
+package pl.epam.robot.database.entity.bookstore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BOOKSTORE")
+@Table(name = "BOOKSTORES")
 public class Bookstore {
 
 	@Id

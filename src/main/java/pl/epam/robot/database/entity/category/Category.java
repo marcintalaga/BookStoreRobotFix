@@ -1,4 +1,4 @@
-package pl.epam.robot.entity;
+package pl.epam.robot.database.entity.category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import pl.robot.enums.CategoryType;
+
 @Entity
-@Table(name = "CATEGORY")
+@Table(name = "CATEGORIES")
 public class Category {
 
 	@Id

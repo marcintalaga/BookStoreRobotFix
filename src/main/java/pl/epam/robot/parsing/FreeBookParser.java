@@ -8,8 +8,6 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import pl.epam.robot.database.DatabaseSaver;
-
 /**
  * @author Aleksander
  *
@@ -36,7 +34,7 @@ public class FreeBookParser {
 	 */
 	public List<BookstoreResources> freeBooks() {
 		loadProperties();
-		DatabaseSaver ds = new DatabaseSaver();
+
 		int counter = 0;
 
 		for (int i = 0; i < Integer.parseInt(properties.getProperty("NumberOfURLs")); i++) {
@@ -55,11 +53,11 @@ public class FreeBookParser {
 				logger.error(e.getMessage());
 			}
 			
-			finder.saveBooks(bookStoreName, ds);
+			finder.saveBooks(bookStoreName);
 		}
 		
 		
-		ds.shutDown();
+	
 		return freeBooks;
 	}
 
