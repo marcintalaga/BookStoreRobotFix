@@ -18,5 +18,7 @@
 		<mapping class="pl.epam.robot.database.entity.book.Book"></mapping>
 		<mapping class="pl.epam.robot.database.entity.bookstore.Bookstore"></mapping>
 		<mapping class="pl.epam.robot.database.entity.category.Category"></mapping>
+		<mapping class="pl.epam.robot.database.entity.tags.Tag"></mapping>
+
 	</session-factory>
 </hibernate-configuration>

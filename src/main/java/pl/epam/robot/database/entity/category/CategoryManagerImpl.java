@@ -2,8 +2,8 @@ package pl.epam.robot.database.entity.category;
 
 import org.hibernate.HibernateException;
 
-import pl.epam.robot.database.dao.CategoryDAO;
-import pl.epam.robot.database.dao.CategoryDAOImpl;
+import pl.epam.robot.database.dao.category.CategoryDAO;
+import pl.epam.robot.database.dao.category.CategoryDAOImpl;
 import pl.epam.utils.HibernateUtils;
 
 public class CategoryManagerImpl implements CategoryManager {
@@ -17,7 +17,7 @@ public class CategoryManagerImpl implements CategoryManager {
             categoryDAO.save(category);
             HibernateUtils.commitTransaction();
         } catch (HibernateException ex) {
-            System.out.println("Cos poszlo nie tak z zapisywaniem!");
+            System.out.println("Cos poszlo nie tak z zapisywaniem!"+ ex.getMessage());
             HibernateUtils.rollbackTransaction();
         }		
 	}

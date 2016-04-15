@@ -1,7 +1,8 @@
-package pl.epam.robot.database.dao;
+package pl.epam.robot.database.dao.book;
 
 import org.hibernate.Query;
 
+import pl.epam.robot.database.dao.GenericDAOImpl;
 import pl.epam.robot.database.entity.book.Book;
 import pl.epam.utils.HibernateUtils;
 

@@ -20,7 +20,9 @@ import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.category.CategoryManager;
 import pl.epam.robot.database.entity.category.CategoryManagerImpl;
-import pl.epam.robot.parsing.FreeBookTagsFinder;
+import pl.epam.robot.database.entity.tags.Tag;
+import pl.epam.robot.database.entity.tags.TagManager;
+import pl.epam.robot.database.entity.tags.TagManagerImpl;
 
 /**
  * @author Aleksander
@@ -97,9 +99,11 @@ public class FreeBookFinder {
 	 */
 	public void saveBooks(String bookStoreName) {
 
+		FreeBookTagsFinder tagger = new FreeBookTagsFinder();
+		
+		
 		CategoryManager cm = new CategoryManagerImpl();
 		Category category = cm.findCategoryById(1);
-		FreeBookTagsFinder tagger = new FreeBookTagsFinder();
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName(bookStoreName);
 		BookstoreManager bm = new BookstoreManagerImpl();
@@ -108,10 +112,15 @@ public class FreeBookFinder {
 		for (Book book : freeBooks) {
 			book.setCategory(category);
 			book.setBookstore(bookstore);
-			if (bookstore.getName().equals("Nexto")) {//|| bookstore.getName().equals("Publio")) {
-				book.setTags(tagger.getTags(book.getTitleAndAuthor(), bookstore.getName()));
+			
+			if (bookStoreName.equals("Nexto") || bookStoreName.equals("Publio")) {
+				Tag tag = new Tag();
+				tag.setContent(tagger.getTags(book.getTitleAndAuthor(), bookstore.getName()));
+				TagManager tm = new TagManagerImpl();
+				tm.saveNewTag(tag);
+				book.setTags(tag);
 			}
-			System.out.println(book.toString());
+
 			BookManager bookmanager = new BookManagerImpl();
 			bookmanager.saveNewBook(book);
 
