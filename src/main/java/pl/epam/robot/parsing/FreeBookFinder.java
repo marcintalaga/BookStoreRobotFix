@@ -29,7 +29,7 @@ import pl.epam.robot.parsing.FreeBookTagsFinder;
 public class FreeBookFinder {
 	final static Logger bookslogger = Logger.getLogger("booksLogger");
 	final static Logger logger = Logger.getLogger("logger");
-	
+
 	Set<Book> freeBooks = new HashSet<Book>();
 	String pattern;
 	String attr;
@@ -96,7 +96,7 @@ public class FreeBookFinder {
 	 * @param ds
 	 */
 	public void saveBooks(String bookStoreName) {
-		
+
 		CategoryManager cm = new CategoryManagerImpl();
 		Category category = cm.findCategoryById(1);
 		FreeBookTagsFinder tagger = new FreeBookTagsFinder();
@@ -104,15 +104,17 @@ public class FreeBookFinder {
 		bookstore.setName(bookStoreName);
 		BookstoreManager bm = new BookstoreManagerImpl();
 		bm.saveNewBookstore(bookstore);
-		
+
 		for (Book book : freeBooks) {
 			book.setCategory(category);
 			book.setBookstore(bookstore);
-			book.setTags(tagger.getTags(book.getTitleAndAuthor()));
+			if (bookstore.getName().equals("Nexto")) {//|| bookstore.getName().equals("Publio")) {
+				book.setTags(tagger.getTags(book.getTitleAndAuthor(), bookstore.getName()));
+			}
 			System.out.println(book.toString());
 			BookManager bookmanager = new BookManagerImpl();
 			bookmanager.saveNewBook(book);
-			
+
 			bookslogger.info(book);
 		}
 	}

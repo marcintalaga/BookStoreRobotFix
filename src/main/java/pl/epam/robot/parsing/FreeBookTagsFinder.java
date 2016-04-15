@@ -12,22 +12,18 @@ import org.jsoup.select.Elements;
 public class FreeBookTagsFinder {
 	private Map<String, String> nextoTagsList;
 	private Map<String, String> publioTagsList;
-	
-	public String getTags(String bookStoreName) {
-		nextoTagsList = new HashMap<String, String>();
-		publioTagsList = new HashMap<String, String>();
-		FreeBookTagsFinder faggot = new FreeBookTagsFinder();
-		faggot.getPublioTags();
-		faggot.getNextoTags();
 
-		String tag;
-		if (nextoTagsList.containsKey(bookStoreName))
-			tag = nextoTagsList.get(bookStoreName);
-		else if (publioTagsList.containsKey(bookStoreName))
-			tag = publioTagsList.get(bookStoreName);
-		else
-			tag = "-";
 
+	public String getTags(String book, String bookstoreName) {
+		String tag = "";
+		if (bookstoreName.equals("Nexto")) {
+			nextoTagsList = getNextoTags();
+			tag = nextoTagsList.get(book);
+		} else if (bookstoreName.equals("Publio")) {
+			publioTagsList = getPublioTags();
+			tag = publioTagsList.get(book);
+		}
+		
 		return tag;
 	}
 
@@ -85,6 +81,5 @@ public class FreeBookTagsFinder {
 		}
 		return nextoTags;
 	}
-
 
 }
