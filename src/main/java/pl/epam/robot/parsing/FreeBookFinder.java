@@ -20,6 +20,7 @@ import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.category.CategoryManager;
 import pl.epam.robot.database.entity.category.CategoryManagerImpl;
+import pl.epam.robot.parsing.FreeBookTagsFinder;
 
 /**
  * @author Aleksander
@@ -98,7 +99,7 @@ public class FreeBookFinder {
 		
 		CategoryManager cm = new CategoryManagerImpl();
 		Category category = cm.findCategoryById(1);
-		
+		FreeBookTagsFinder tagger = new FreeBookTagsFinder();
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName(bookStoreName);
 		BookstoreManager bm = new BookstoreManagerImpl();
@@ -107,7 +108,8 @@ public class FreeBookFinder {
 		for (Book book : freeBooks) {
 			book.setCategory(category);
 			book.setBookstore(bookstore);
-			book.setTags("");
+			book.setTags(tagger.getTags(book.getTitleAndAuthor()));
+			System.out.println(book.toString());
 			BookManager bookmanager = new BookManagerImpl();
 			bookmanager.saveNewBook(book);
 			
