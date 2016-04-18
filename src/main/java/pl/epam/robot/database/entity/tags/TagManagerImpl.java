@@ -22,4 +22,16 @@ public class TagManagerImpl implements TagManager{
         }	
 	}
 
+	@Override
+	public void deleteTag(Tag tag) {
+		try {
+            HibernateUtils.beginTransaction();
+            tagDAO.delete(tag);
+            HibernateUtils.commitTransaction();
+        } catch (HibernateException ex) {
+            System.out.println("Cos poszlo nie tak z usuwaniem!"+ ex.getMessage());
+            HibernateUtils.rollbackTransaction();
+        }		
+	}
+
 }

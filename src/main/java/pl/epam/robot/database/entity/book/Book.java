@@ -23,15 +23,15 @@ public class Book {
 	@Column(name = "BOOK_ID", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name="TITLE_AND_AUTHOR")
+	@Column(name="TITLE_AND_AUTHOR", nullable = false)
 	private String titleAndAuthor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CATEGORY_ID", nullable = false)
+	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "BOOKSTORE_ID", nullable = false)
+	@JoinColumn(name = "BOOKSTORE_ID")
 	private Bookstore bookstore;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

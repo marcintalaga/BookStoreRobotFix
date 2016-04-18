@@ -5,4 +5,6 @@ public interface BookManager {
 	public void saveNewBook(Book book);
 	
 	public Book findByBookTitleAndAuthor(String titleAndAuthor);
+	
+	public void deleteBook(Book book);
 }

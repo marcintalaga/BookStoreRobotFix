@@ -34,4 +34,15 @@ public class CategoryManagerImpl implements CategoryManager {
 	        return category;
 	    }
 
+	@Override
+	public void deleteCategory(Category category) {
+        try {
+            HibernateUtils.beginTransaction();
+            categoryDAO.delete(category);
+            HibernateUtils.commitTransaction();
+        } catch (HibernateException ex) {
+            System.out.println("Cos poszlo nie z usuwaniem!");
+        }		
+	}
+
 }

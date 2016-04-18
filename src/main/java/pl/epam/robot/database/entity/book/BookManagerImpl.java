@@ -10,31 +10,43 @@ import pl.epam.utils.HibernateUtils;
 public class BookManagerImpl implements BookManager {
 
 	BookDAO bookDAO = new BookDAOImpl();
-	
+
 	@Override
 	public void saveNewBook(Book book) {
 		try {
-            HibernateUtils.beginTransaction();
-            bookDAO.save(book);
-            HibernateUtils.commitTransaction();
-        } catch (HibernateException ex) {
-            System.out.println("Cos poszlo nie tak z zapisywaniem!" + ex.getMessage());
-            HibernateUtils.rollbackTransaction();
-        }		
+			HibernateUtils.beginTransaction();
+			bookDAO.save(book);
+			HibernateUtils.commitTransaction();
+		} catch (HibernateException ex) {
+			System.out.println("Cos poszlo nie tak z zapisywaniem!" + ex.getMessage());
+			HibernateUtils.rollbackTransaction();
+		}
 	}
-	
-    public Book findByBookTitleAndAuthor(String titleAndAuthor) {
-        Book book = null;
-        try {
-            HibernateUtils.beginTransaction();
-            book = bookDAO.findByTitleAndAuthor(titleAndAuthor);
-            HibernateUtils.commitTransaction();
-        } catch (NonUniqueResultException ex) {
-            System.out.println("Query returned more than one results.");
-        } catch (HibernateException ex) {
-            System.out.println("Jakis inny problem z zapytaniem.");
-        }
-        return book;
-    }
+
+	public Book findByBookTitleAndAuthor(String titleAndAuthor) {
+		Book book = null;
+		try {
+			HibernateUtils.beginTransaction();
+			book = bookDAO.findByTitleAndAuthor(titleAndAuthor);
+			HibernateUtils.commitTransaction();
+		} catch (NonUniqueResultException ex) {
+			System.out.println("Query returned more than one results.");
+		} catch (HibernateException ex) {
+			System.out.println("Jakis inny problem z zapytaniem.");
+		}
+		return book;
+	}
+
+	@Override
+	public void deleteBook(Book book) {
+		try {
+			HibernateUtils.beginTransaction();
+			bookDAO.delete(book);
+			HibernateUtils.commitTransaction();
+		} catch (HibernateException ex) {
+			System.out.println("Cos poszlo nie tak z usuwaniem!");
+			HibernateUtils.rollbackTransaction();
+		}
+	}
 
 }

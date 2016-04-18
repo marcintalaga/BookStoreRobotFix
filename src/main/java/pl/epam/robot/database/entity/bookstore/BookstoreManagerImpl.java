@@ -22,4 +22,16 @@ public class BookstoreManagerImpl implements BookstoreManager {
 		}
 	}
 
+	@Override
+	public void deleteBookstore(Bookstore bookstore) {
+		try {
+			HibernateUtils.beginTransaction();
+			bookstoreDAO.delete(bookstore);
+			HibernateUtils.commitTransaction();
+		} catch (HibernateException ex) {
+			System.out.println("Cos poszlo nie tak z usuwaniem!");
+			HibernateUtils.rollbackTransaction();
+		}
+	}
+
 }

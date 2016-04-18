@@ -1,16 +1,25 @@
 package pl.epam.robot;
-import static org.mockito.Mockito.mock;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.testng.annotations.Test;
 
-import pl.epam.robot.view.controller.Controller;
+import pl.epam.robot.parsing.FreeBookTagsFinder;
+
 
 public class RobotTests {
 	
-	Controller controller;
+	@Test
+	public void testGettingTagsFromNexto() {
+		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
+		String tags = fbtf.getTags("blabla", "Nexto");
+		assertThat(tags).isNull();
+	}
 	
 	@Test
-	public void create() {
-		controller = mock(Controller.class);		
+	public void testGettingTagsFromPublio() {
+		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
+		String tags = fbtf.getTags("blabla", "Publio");
+		assertThat(tags).isNull();
 	}
 }

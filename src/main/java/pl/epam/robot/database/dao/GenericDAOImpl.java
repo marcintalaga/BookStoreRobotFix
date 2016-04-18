@@ -1,7 +1,6 @@
 package pl.epam.robot.database.dao;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,25 +20,19 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 	}
 
 	@Override
-	public void merge(T entity) {
-		Session hibernateSession = this.getSession();
-		hibernateSession.merge(entity);
-	}
-
-	@Override
 	public void delete(T entity) {
 		Session hibernateSession = this.getSession();
 		hibernateSession.delete(entity);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<T> findMany(Query query) {
-		List<T> t;
-		t = (List<T>) query.list();
-		return t;
-	}
-
+	//
+	// @SuppressWarnings("unchecked")
+	// @Override
+	// public List<T> findMany(Query query) {
+	// List<T> t;
+	// t = (List<T>) query.list();
+	// return t;
+	// }
 	@SuppressWarnings("unchecked")
 	@Override
 	public T findOne(Query query) {
@@ -48,16 +41,16 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 		return t;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<T> findAll(Class<?> clazz) {
-		Session hibernateSession = this.getSession();
-		List<T> T = null;
-		Query query = hibernateSession.createQuery("from " + clazz.getName());
-		T = query.list();
-		return T;
-	}
-
+	// @SuppressWarnings("unchecked")
+	// @Override
+	// public List<T> findAll(Class<?> clazz) {
+	// Session hibernateSession = this.getSession();
+	// List<T> T = null;
+	// Query query = hibernateSession.createQuery("from " + clazz.getName());
+	// T = query.list();
+	// return T;
+	// }
+	//
 	@SuppressWarnings("unchecked")
 	@Override
 	public T findByID(Class<?> clazz, Integer id) {
@@ -66,5 +59,4 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 		t = (T) hibernateSession.get(clazz, id);
 		return t;
 	}
-
 }
