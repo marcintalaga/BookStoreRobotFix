@@ -1,4 +1,4 @@
-package pl.epam.utils;
+package pl.epam.robot.database;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

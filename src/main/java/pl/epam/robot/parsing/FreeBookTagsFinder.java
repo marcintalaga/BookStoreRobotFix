@@ -13,6 +13,7 @@ public class FreeBookTagsFinder {
 	private Map<String, String> nextoTagsList;
 	private Map<String, String> publioTagsList;
 
+
 	public String getTags(String book, String bookstoreName) {
 		String tag = "";
 		if (bookstoreName.equals("Nexto")) {
@@ -22,7 +23,7 @@ public class FreeBookTagsFinder {
 			publioTagsList = getPublioTags();
 			tag = publioTagsList.get(book);
 		}
-
+		
 		return tag;
 	}
 

@@ -13,10 +13,10 @@ import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.category.CategoryManager;
 import pl.epam.robot.database.entity.category.CategoryManagerImpl;
+import pl.epam.robot.database.entity.category.CategoryType;
 import pl.epam.robot.database.entity.tags.Tag;
 import pl.epam.robot.database.entity.tags.TagManager;
 import pl.epam.robot.database.entity.tags.TagManagerImpl;
-import pl.robot.enums.CategoryType;
 
 public class DatabaseTests {
 

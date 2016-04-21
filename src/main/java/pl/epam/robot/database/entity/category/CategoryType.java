@@ -1,4 +1,4 @@
-package pl.robot.enums;
+package pl.epam.robot.database.entity.category;
 
 public enum CategoryType {
 	

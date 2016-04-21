@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import pl.epam.utils.HibernateUtils;
+import pl.epam.robot.database.HibernateUtils;
 
 public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 

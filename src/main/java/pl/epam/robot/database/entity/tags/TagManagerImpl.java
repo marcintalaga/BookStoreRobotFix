@@ -2,9 +2,9 @@ package pl.epam.robot.database.entity.tags;
 
 import org.hibernate.HibernateException;
 
+import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.tags.TagDAO;
 import pl.epam.robot.database.dao.tags.TagDAOImpl;
-import pl.epam.utils.HibernateUtils;
 
 public class TagManagerImpl implements TagManager{
 

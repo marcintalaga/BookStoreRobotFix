@@ -2,9 +2,9 @@ package pl.epam.robot.database.entity.bookstore;
 
 import org.hibernate.HibernateException;
 
+import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.bookstore.BookstoreDAO;
 import pl.epam.robot.database.dao.bookstore.BookstoreDAOImpl;
-import pl.epam.utils.HibernateUtils;
 
 public class BookstoreManagerImpl implements BookstoreManager {
 

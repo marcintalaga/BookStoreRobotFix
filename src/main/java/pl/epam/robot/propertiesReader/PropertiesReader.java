@@ -13,14 +13,16 @@ public class PropertiesReader {
 	final static Logger logger = Logger.getLogger("logger");
 	private static final String PROPERTIES_FILE_NAME = "URL.properties";
 
-	
-	private Properties properties = new Properties();
-	private InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
-	
+	private Properties properties;
+	private InputStream inputStream;
 
-	
+	public PropertiesReader() {
+		properties = new Properties();
+		inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
+	}
+
 	public List<String> getBookstoresNames() {
-		int nameSuffix = 1;
+		int nameSuffix = 0;
 		List<String> bookstoresNamesList = new ArrayList<>();
 
 		if (inputStream != null) {
@@ -38,5 +40,5 @@ public class PropertiesReader {
 
 		return bookstoresNamesList;
 	}
-	
+
 }

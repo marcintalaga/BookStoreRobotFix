@@ -11,7 +11,9 @@ import org.apache.log4j.Logger;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.category.CategoryManager;
 import pl.epam.robot.database.entity.category.CategoryManagerImpl;
-import pl.robot.enums.CategoryType;
+import pl.epam.robot.database.entity.category.CategoryType;
+import pl.epam.robot.urlGenerator.URL;
+import pl.epam.robot.urlGenerator.URLGenerator;
 
 /**
  * @author Aleksander

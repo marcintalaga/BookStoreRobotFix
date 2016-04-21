@@ -6,7 +6,8 @@ import pl.epam.robot.database.entity.book.Book;
 
 /**
  * 
- * Value object. Contains List of books from single bookstore + Sting name of
+ * Value object. 
+ * Contains List of books from single bookstore + Sting name of
  * the bookstore.
  * 
  * @author Aleksander

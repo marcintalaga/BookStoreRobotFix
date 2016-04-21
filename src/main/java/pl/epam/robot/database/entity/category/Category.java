@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import pl.robot.enums.CategoryType;
-
 @Entity
 @Table(name = "CATEGORIES")
 public class Category {
@@ -36,4 +34,11 @@ public class Category {
 	public void setCategoryType(CategoryType categoryType) {
 		this.categoryType = categoryType;
 	}
+
+	@Override
+	public String toString() {
+		return categoryType.toString();
+	}
+	
+	
 }

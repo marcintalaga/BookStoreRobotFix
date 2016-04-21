@@ -1,4 +1,4 @@
-package pl.epam.robot.parsing;
+package pl.epam.robot.urlGenerator;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,27 +18,40 @@ import org.apache.log4j.Logger;
  */
 public class URLGenerator {
 
-	final static Logger logger = Logger.getLogger("logger");
-	List<URL> urls = new ArrayList<URL>();
-	Properties properties = new Properties();
+	private final static Logger logger = Logger.getLogger("logger");
+
+	private List<URL> urls;
+	private Properties properties;
 
 	/**
+	 * Public constructor which initializes url list and properties
+	 */
+	public URLGenerator() {
+		urls = new ArrayList<URL>();
+		properties = new Properties();
+	}
+
+	/**
+	 * A method which reads urls from properties file
+	 * 
 	 * @return List<URL>
 	 */
 	public List<URL> getUrls() {
-		try {
-			readFromFile();
-		} catch (Exception e) {
-			logger.error("Incorrect number format");
-		}
+
+		readFromFile();
+
 		if (properties != null || !properties.isEmpty()) {
 			generateURL();
 		} else {
-			logger.error("Problem z propertisami");
+			logger.error("Properties file is null or empty");
 		}
+
 		return urls;
 	}
 
+	/**
+	 * Method loads properties from external file URL.properties
+	 */
 	private void readFromFile() {
 		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"));
 
@@ -50,7 +63,7 @@ public class URLGenerator {
 	}
 
 	/**
-	 * Generates URL
+	 * Method fills the list of URLs
 	 */
 	private void generateURL() {
 		for (int i = 0; i < Integer.parseInt(properties.getProperty("NumberOfURLs")); i++) {
@@ -65,7 +78,6 @@ public class URLGenerator {
 							properties.getProperty("URLPrefix" + i) + j + properties.getProperty("URLSuffix" + i));
 				}
 			}
-
 		}
 	}
 }

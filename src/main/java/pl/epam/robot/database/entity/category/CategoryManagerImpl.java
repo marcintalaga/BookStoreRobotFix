@@ -2,9 +2,9 @@ package pl.epam.robot.database.entity.category;
 
 import org.hibernate.HibernateException;
 
+import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.category.CategoryDAO;
 import pl.epam.robot.database.dao.category.CategoryDAOImpl;
-import pl.epam.utils.HibernateUtils;
 
 public class CategoryManagerImpl implements CategoryManager {
 

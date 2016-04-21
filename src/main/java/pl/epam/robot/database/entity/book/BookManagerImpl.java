@@ -3,9 +3,9 @@ package pl.epam.robot.database.entity.book;
 import org.hibernate.HibernateException;
 import org.hibernate.NonUniqueResultException;
 
+import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.book.BookDAO;
 import pl.epam.robot.database.dao.book.BookDAOImpl;
-import pl.epam.utils.HibernateUtils;
 
 public class BookManagerImpl implements BookManager {
 

@@ -1,4 +1,4 @@
-package pl.epam.robot.parsing;
+package pl.epam.robot.urlGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,8 @@ import java.util.List;
  */
 public class URL {
 	private List<String> urls = new ArrayList<String>();
-
+	
+	
 	public List<String> getUrls() {
 		return urls;
 	}

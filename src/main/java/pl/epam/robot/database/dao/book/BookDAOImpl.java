@@ -2,9 +2,9 @@ package pl.epam.robot.database.dao.book;
 
 import org.hibernate.Query;
 
+import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.GenericDAOImpl;
 import pl.epam.robot.database.entity.book.Book;
-import pl.epam.utils.HibernateUtils;
 
 public class BookDAOImpl extends GenericDAOImpl<Book, Integer> implements BookDAO {
 

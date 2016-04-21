@@ -32,9 +32,9 @@ public class FreeBookFinder {
 	final static Logger bookslogger = Logger.getLogger("booksLogger");
 	final static Logger logger = Logger.getLogger("logger");
 
-	Set<Book> freeBooks = new HashSet<Book>();
-	String pattern;
-	String attr;
+	private Set<Book> freeBooks = new HashSet<Book>();
+	private String pattern;
+	private String attr;
 
 	/**
 	 * Setting pattern and attribute as instance variables
@@ -54,7 +54,7 @@ public class FreeBookFinder {
 	 * @param urls
 	 * @return List<String> freeBooks
 	 */
-	Set<Book> getFreeBooks(List<String> urls) {
+	public Set<Book> getFreeBooks(List<String> urls) {
 		for (String url : urls) {
 			Document doc = null;
 			try {
@@ -84,6 +84,7 @@ public class FreeBookFinder {
 			if (attr.isEmpty()) {
 				Book book = new Book();
 				book.setTitleAndAuthor(element.text());
+				book.setCategory(null);
 				freeBooks.add(book);
 			} else {
 				Book book = new Book();
@@ -95,7 +96,7 @@ public class FreeBookFinder {
 
 	/**
 	 * @param bookStoreName
-	 * @param ds
+	 *
 	 */
 	public void saveBooks(String bookStoreName) {
 
@@ -113,7 +114,7 @@ public class FreeBookFinder {
 			book.setCategory(category);
 			book.setBookstore(bookstore);
 			
-			if (bookStoreName.equals("Nexto") || bookStoreName.equals("Publio")) {
+			if (bookStoreName.equals("Nexto")){//|| bookStoreName.equals("Publio")) {
 				Tag tag = new Tag();
 				tag.setContent(tagger.getTags(book.getTitleAndAuthor(), bookstore.getName()));
 				TagManager tm = new TagManagerImpl();
