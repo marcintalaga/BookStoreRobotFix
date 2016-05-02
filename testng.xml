@@ -3,8 +3,8 @@
 <suite name="Suite" parallel="none">
   <test name="Test">
     <classes>
-      <class name="pl.epam.robot.RobotTests"/>
-      <class name="pl.epam.robot.database.DatabaseTests"/>
+      <class name="pl.epam.robot.RobotTest"/>
+      <class name="pl.epam.robot.database.DatabaseTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

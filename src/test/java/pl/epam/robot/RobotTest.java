@@ -20,7 +20,7 @@ import pl.epam.robot.urlGenerator.URLGenerator;
  * @author paulina
  *
  */
-public class RobotTests {
+public class RobotTest {
 	
 	/**
 	 * Test getting tags from Nexto bookstore

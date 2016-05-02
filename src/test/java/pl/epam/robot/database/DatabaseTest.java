@@ -18,7 +18,7 @@ import pl.epam.robot.database.entity.tags.Tag;
 import pl.epam.robot.database.entity.tags.TagManager;
 import pl.epam.robot.database.entity.tags.TagManagerImpl;
 
-public class DatabaseTests {
+public class DatabaseTest {
 
 	@Test
 	public void testAddingAndDeletingBook() {
