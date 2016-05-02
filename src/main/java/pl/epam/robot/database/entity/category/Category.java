@@ -17,7 +17,7 @@ public class Category {
 	private int id;
 
 	@Column(name = "CATEGORY_TYPE")
-	private CategoryType categoryType;
+	private String categoryType;
 	
 	public int getId() {
 		return id;
@@ -27,12 +27,12 @@ public class Category {
 		this.id = id;
 	}
 
-	public CategoryType getCategoryType() {
+	public String getCategoryType() {
 		return categoryType;
 	}
 
-	public void setCategoryType(CategoryType categoryType) {
-		this.categoryType = categoryType;
+	public void setCategoryType(String string) {
+		this.categoryType = string;
 	}
 
 	@Override

@@ -38,9 +38,7 @@ public class URLGenerator {
 	 * @return List<URL>
 	 */
 	public List<URL> getUrls() {
-
 		readFromFile();
-
 		if (properties != null && !properties.isEmpty()) {
 			generateURL();
 		} else {
@@ -56,7 +54,6 @@ public class URLGenerator {
 	private void readFromFile() {
 		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"),
 				Charset.forName("UTF-8"));
-
 		try {
 			properties.load(fileReader);
 		} catch (IOException e) {

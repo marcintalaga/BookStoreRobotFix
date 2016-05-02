@@ -9,10 +9,6 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import pl.epam.robot.database.entity.category.Category;
-import pl.epam.robot.database.entity.category.CategoryManager;
-import pl.epam.robot.database.entity.category.CategoryManagerImpl;
-import pl.epam.robot.database.entity.category.CategoryType;
 import pl.epam.robot.urlGenerator.URL;
 import pl.epam.robot.urlGenerator.URLGenerator;
 
@@ -43,14 +39,7 @@ public class FreeBookParser {
 	 */
 	public List<BookstoreResources> freeBooks() {
 		loadProperties();
-
-		Category category = new Category();
-		category.setCategoryType(CategoryType.komedia);
-		CategoryManager cm = new CategoryManagerImpl();
-		cm.saveNewCategory(category);
-
 		int counter = 0;
-
 		for (int i = 0; i < Integer.parseInt(properties.getProperty("NumberOfURLs")); i++) {
 			if (!Boolean.valueOf(properties.getProperty(("active" + i)))) {
 				continue;

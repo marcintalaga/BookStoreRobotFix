@@ -13,7 +13,6 @@ import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.category.CategoryManager;
 import pl.epam.robot.database.entity.category.CategoryManagerImpl;
-import pl.epam.robot.database.entity.category.CategoryType;
 import pl.epam.robot.database.entity.tags.Tag;
 import pl.epam.robot.database.entity.tags.TagManager;
 import pl.epam.robot.database.entity.tags.TagManagerImpl;
@@ -29,7 +28,7 @@ public class DatabaseTest {
 		assertThat(bookstore.getId()).isNotNull();
 
 		Category cat = new Category();
-		cat.setCategoryType(CategoryType.komedia);
+		cat.setCategoryType("blabla");
 		CategoryManager cm = new CategoryManagerImpl();
 		cm.saveNewCategory(cat);
 		assertThat(cat.getId()).isNotNull();
@@ -83,7 +82,7 @@ public class DatabaseTest {
 	@Test
 	public void testFindingCategoryById() {
 		Category cat = new Category();
-		cat.setCategoryType(CategoryType.komedia);
+		cat.setCategoryType("blabla");
 		CategoryManager cm = new CategoryManagerImpl();
 		cm.saveNewCategory(cat);
 		assertThat(cat.getId()).isNotNull();

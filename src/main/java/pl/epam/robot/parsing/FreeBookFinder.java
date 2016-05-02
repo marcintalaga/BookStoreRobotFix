@@ -17,9 +17,6 @@ import pl.epam.robot.database.entity.book.BookManagerImpl;
 import pl.epam.robot.database.entity.bookstore.Bookstore;
 import pl.epam.robot.database.entity.bookstore.BookstoreManager;
 import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
-import pl.epam.robot.database.entity.category.Category;
-import pl.epam.robot.database.entity.category.CategoryManager;
-import pl.epam.robot.database.entity.category.CategoryManagerImpl;
 import pl.epam.robot.database.entity.tags.Tag;
 import pl.epam.robot.database.entity.tags.TagManager;
 import pl.epam.robot.database.entity.tags.TagManagerImpl;
@@ -102,15 +99,13 @@ public class FreeBookFinder {
 
 		FreeBookTagsFinder tagger = new FreeBookTagsFinder();
 
-		CategoryManager cm = new CategoryManagerImpl();
-		Category category = cm.findCategoryById(1);
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName(bookStoreName);
 		BookstoreManager bm = new BookstoreManagerImpl();
 		bm.saveNewBookstore(bookstore);
 
 		for (Book book : freeBooks) {
-			book.setCategory(category);
+			
 			book.setBookstore(bookstore);
 
 			if (bookStoreName.equals("Nexto")) {// ||
@@ -122,7 +117,8 @@ public class FreeBookFinder {
 				tm.saveNewTag(tag);
 				book.setTags(tag);
 			}
-
+//			FreeBookCategoriesFinder catfinder = new FreeBookCategoriesFinder(book.getTitleAndAuthor(), bookstore.getName());
+//			book.setCategory(catfinder.matchCategories());
 			BookManager bookmanager = new BookManagerImpl();
 			bookmanager.saveNewBook(book);
 
