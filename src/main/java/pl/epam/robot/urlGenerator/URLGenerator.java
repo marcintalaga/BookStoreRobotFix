@@ -2,6 +2,7 @@ package pl.epam.robot.urlGenerator;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -40,7 +41,7 @@ public class URLGenerator {
 
 		readFromFile();
 
-		if (properties != null || !properties.isEmpty()) {
+		if (properties != null && !properties.isEmpty()) {
 			generateURL();
 		} else {
 			logger.error("Properties file is null or empty");
@@ -53,12 +54,18 @@ public class URLGenerator {
 	 * Method loads properties from external file URL.properties
 	 */
 	private void readFromFile() {
-		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"));
+		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"),
+				Charset.forName("UTF-8"));
 
 		try {
 			properties.load(fileReader);
 		} catch (IOException e) {
 			logger.error("Cant find 'URL.properties' file in resources folder");
+		}
+		try {
+			fileReader.close();
+		} catch (IOException e) {
+			logger.error("Cannot close stream" + e.getMessage());
 		}
 	}
 

@@ -2,6 +2,7 @@ package pl.epam.robot.parsing;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -77,7 +78,7 @@ public class FreeBookParser {
 	 * resources folder
 	 */
 	private void loadProperties() {
-		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"));
+		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"), Charset.forName("UTF-8"));
 		try {
 			properties.load(fileReader);
 		} catch (IOException e) {
