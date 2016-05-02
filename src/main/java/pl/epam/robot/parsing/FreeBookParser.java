@@ -24,14 +24,15 @@ public class FreeBookParser {
 	final static Logger logger = Logger.getLogger("logger");
 	final static Logger bookslogger = Logger.getLogger("booksLogger");
 
-	Properties properties = new Properties();
-	List<URL> urls = new URLGenerator().getUrls();
-	List<BookstoreResources> freeBooks = new ArrayList<BookstoreResources>();
-	FreeBookFinder finder;
+	private Properties properties;
+	private List<URL> urls;
+	private List<BookstoreResources> freeBooks;
+	private FreeBookFinder finder;
 
-	public static void main(String[] args) {
-		FreeBookParser f = new FreeBookParser();
-		f.freeBooks();
+	public FreeBookParser() {
+		properties = new Properties();
+		urls = new URLGenerator().getUrls();
+		freeBooks = new ArrayList<BookstoreResources>();
 	}
 
 	/**
@@ -57,17 +58,15 @@ public class FreeBookParser {
 			String bookStoreName = properties.getProperty("name" + i);
 			bookslogger.info(bookStoreName);
 
-			try {
-				freeBooks.add(new BookstoreResources(properties.get("URLPrefix" + i).toString(), bookStoreName));
-				finder = new FreeBookFinder(properties.getProperty("pattern" + i), properties.getProperty("attr" + i));
+			freeBooks.add(new BookstoreResources(properties.get("URLPrefix" + i).toString(), bookStoreName));
+			finder = new FreeBookFinder(properties.getProperty("pattern" + i), properties.getProperty("attr" + i));
+			if (urls != null && !urls.isEmpty()) {
 				freeBooks.get(counter).setBooks(finder.getFreeBooks(urls.get(i).getUrls()));
 				counter++;
-			} catch (NullPointerException e) {
-				logger.error(e.getMessage());
+				finder.saveBooks(bookStoreName);
+			} else {
+				logger.error("Pusta lista urli!");
 			}
-
-			finder.saveBooks(bookStoreName);
-
 		}
 
 		return freeBooks;
@@ -78,7 +77,8 @@ public class FreeBookParser {
 	 * resources folder
 	 */
 	private void loadProperties() {
-		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"), Charset.forName("UTF-8"));
+		InputStreamReader fileReader = new InputStreamReader(getClass().getResourceAsStream("/URL.properties"),
+				Charset.forName("UTF-8"));
 		try {
 			properties.load(fileReader);
 		} catch (IOException e) {
