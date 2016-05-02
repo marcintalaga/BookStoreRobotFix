@@ -81,12 +81,12 @@ public class FreeBookFinder {
 	private void parseWebsite(Document doc) {
 		Elements url = doc.select(pattern);
 		for (Element element : url) {
-			if (attr.isEmpty()) {
+			if (attr.isEmpty() && !element.text().isEmpty()) {
 				Book book = new Book();
 				book.setTitleAndAuthor(element.text());
 				book.setCategory(null);
 				freeBooks.add(book);
-			} else {
+			} else if (!element.attr(attr).isEmpty()) {
 				Book book = new Book();
 				book.setTitleAndAuthor(element.attr(attr));
 				freeBooks.add(book);
@@ -101,8 +101,7 @@ public class FreeBookFinder {
 	public void saveBooks(String bookStoreName) {
 
 		FreeBookTagsFinder tagger = new FreeBookTagsFinder();
-		
-		
+
 		CategoryManager cm = new CategoryManagerImpl();
 		Category category = cm.findCategoryById(1);
 		Bookstore bookstore = new Bookstore();
@@ -113,8 +112,10 @@ public class FreeBookFinder {
 		for (Book book : freeBooks) {
 			book.setCategory(category);
 			book.setBookstore(bookstore);
-			
-			if (bookStoreName.equals("Nexto")){//|| bookStoreName.equals("Publio")) {
+
+			if (bookStoreName.equals("Nexto")) {// ||
+												// bookStoreName.equals("Publio"))
+												// {
 				Tag tag = new Tag();
 				tag.setContent(tagger.getTags(book.getTitleAndAuthor(), bookstore.getName()));
 				TagManager tm = new TagManagerImpl();

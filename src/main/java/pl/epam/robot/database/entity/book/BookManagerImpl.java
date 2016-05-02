@@ -18,7 +18,7 @@ public class BookManagerImpl implements BookManager {
 			bookDAO.save(book);
 			HibernateUtils.commitTransaction();
 		} catch (HibernateException ex) {
-			System.out.println("Cos poszlo nie tak z zapisywaniem!" + ex.getMessage());
+			System.out.println("Cos poszlo nie tak z zapisywaniem ksiazki! " + ex.getMessage() + book.getTitleAndAuthor());
 			HibernateUtils.rollbackTransaction();
 		}
 	}

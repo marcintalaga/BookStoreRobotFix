@@ -7,14 +7,12 @@
 		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.password"></property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bookstoreRobot</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bookstoreRobot??useUnicode=true&amp;characterEncoding=utf8</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">false</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
-		<property name="hibernate.connection.useUnicode">yes</property>
-		<property name="hibernate.connection.characterEncoding">UTF-8</property>
 		<mapping class="pl.epam.robot.database.entity.book.Book"></mapping>
 		<mapping class="pl.epam.robot.database.entity.bookstore.Bookstore"></mapping>
 		<mapping class="pl.epam.robot.database.entity.category.Category"></mapping>
