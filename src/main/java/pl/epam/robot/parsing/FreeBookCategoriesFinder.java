@@ -19,6 +19,7 @@ public class FreeBookCategoriesFinder {
 
 	private String bookTitle;
 	private String bookstoreName;
+	private Category cat;
 
 	public FreeBookCategoriesFinder(String bookTitle, String bookstoreName) {
 		this.bookTitle = bookTitle;
@@ -26,7 +27,7 @@ public class FreeBookCategoriesFinder {
 	}
 
 	public Category matchCategories() {
-		Category cat = new Category();
+		
 		CategoryManager catManager = new CategoryManagerImpl();
 		Map<String, String> categories = new HashMap<String, String>();
 
@@ -42,6 +43,7 @@ public class FreeBookCategoriesFinder {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {
 				if (entry.getKey().equals(bookTitle)) {
+					cat = new Category();
 					cat.setCategoryType(entry.getValue());
 					catManager.saveNewCategory(cat);
 					return cat;
