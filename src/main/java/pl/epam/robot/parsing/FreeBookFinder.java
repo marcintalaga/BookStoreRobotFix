@@ -101,7 +101,9 @@ public class FreeBookFinder {
 		FreeBookCategoriesFinder catfinder = new FreeBookCategoriesFinder(bookstore.getName());
 		FreeBookTagsFinder tagger = new FreeBookTagsFinder(bookstore.getName());
 		for (Book book : freeBooks) {
-
+			if (bookStoreName.equals("Publio")) {
+				book.setTitleAndAuthor(book.getTitleAndAuthor().substring(book.getTitleAndAuthor().length() / 2));
+			}
 			book.setBookstore(bookstore);
 			book.setTags(tagger.matchTags(book.getTitleAndAuthor()));
 			book.setCategory(catfinder.matchCategories(book.getTitleAndAuthor()));

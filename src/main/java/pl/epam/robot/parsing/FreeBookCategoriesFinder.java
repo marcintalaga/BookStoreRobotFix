@@ -34,11 +34,14 @@ public class FreeBookCategoriesFinder {
 			categories = getPublioCategories();
 		} else if (bookstoreName.equals("Upoluj Ebooka")) {
 			categories = getUpolujEbookaCategories();
-		}		
+		}
 	}
 
 	public Category matchCategories(String bookTitle) {
 		CategoryManager catManager = new CategoryManagerImpl();
+		if (bookstoreName.equals("Publio")) {
+			bookTitle = bookTitle.substring(bookTitle.length() / 2);
+		}
 		if (categories != null && !categories.isEmpty()) {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {
@@ -52,7 +55,6 @@ public class FreeBookCategoriesFinder {
 		}
 		return cat;
 	}
-	
 
 	private Map<String, String> getLegimiCategories() {
 
@@ -72,7 +74,7 @@ public class FreeBookCategoriesFinder {
 
 				absHref = ebooks.get(i).attr("abs:href");
 				particularBookConnection = Jsoup.connect(absHref).get();
-				elements = particularBookConnection.select("div.moreInfo"); 
+				elements = particularBookConnection.select("div.moreInfo");
 				titles = particularBookConnection.select("div.leftColTop h1");
 
 				bookTitle = titles.text();
@@ -80,7 +82,7 @@ public class FreeBookCategoriesFinder {
 					bookTitle = bookTitle.substring(0, (bookTitle.length() - 15));
 
 				}
-				
+
 				try {
 					if (elements.size() > 0) {
 						spanElements = elements.get(0).getElementsByTag("span");
@@ -105,7 +107,7 @@ public class FreeBookCategoriesFinder {
 
 	private Map<String, String> getPublioCategories() {
 		Map<String, String> publioCat = new HashMap<String, String>();
-		
+
 		try {
 			Document doc = Jsoup.connect("http://www.publio.pl/e-booki,darmowe.html").get();
 
@@ -119,17 +121,16 @@ public class FreeBookCategoriesFinder {
 				absHref = ebooks.get(i).attr("abs:href");
 				particularBookConnection = Jsoup.connect(absHref).get();
 				elements = particularBookConnection.select("div.product-detail");
-				
-				 title = particularBookConnection.select("h1.title ").text();
+
+				title = particularBookConnection.select("h1.title ").text();
 				for (Element element2 : elements) {
 					if ("Publikacja z kategorii:".equals(element2.select("div.product-detail-label").text())) {
-						
+
 						elements2 = element2.select("div.product-detail-value");
 						publioCat.put(title, elements2.text());
 					}
 				}
 			}
-		
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -143,7 +144,7 @@ public class FreeBookCategoriesFinder {
 		Elements category;
 		String title;
 		Elements ebooks;
-		try{
+		try {
 			Document doc = Jsoup.connect("http://upolujebooka.pl/kategoria,8248,darmowe_e-booki.html").get();
 			ebooks = doc.select("div.name a");
 			for (int i = 0; i < ebooks.size(); i++) {
@@ -152,11 +153,11 @@ public class FreeBookCategoriesFinder {
 				category = Jsoup.connect(absHref).get().select("div.category div.fleft a[title]");
 				upolujCat.put(title, category.text());
 			}
-			
-		}catch(IOException e){
+
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return upolujCat;
 	}
 
