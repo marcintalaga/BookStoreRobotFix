@@ -9,6 +9,9 @@ import java.util.Set;
 import org.testng.annotations.Test;
 
 import pl.epam.robot.database.entity.book.Book;
+import pl.epam.robot.database.entity.category.Category;
+import pl.epam.robot.database.entity.tags.Tag;
+import pl.epam.robot.parsing.FreeBookCategoriesFinder;
 import pl.epam.robot.parsing.FreeBookFinder;
 import pl.epam.robot.parsing.FreeBookTagsFinder;
 import pl.epam.robot.propertiesReader.PropertiesReader;
@@ -17,84 +20,72 @@ import pl.epam.robot.urlGenerator.URLGenerator;
 
 /**
  * A class which tests robots activity
+ * 
  * @author paulina
  *
  */
 public class RobotTest {
-	
+
 	/**
-	 * Test getting tags from Nexto bookstore
+	 * Test getting tags from non existing bookstore
 	 */
-//	@Test
-//	public void testGettingTagsFromNexto() {
-//		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
-//		String tags = fbtf.getTags("blabla", "Nexto");
-//		assertThat(tags).isNull();
-//	}
-	
+	@Test
+	public void testGettingTags() {
+		FreeBookTagsFinder fbtf = new FreeBookTagsFinder("blablabl");
+		Tag tag = fbtf.matchTags("blabla");
+		assertThat(tag.getContent()).isEqualTo("default");
+	}
+
 	/**
-	 * Test getting tags from Publio bookstore
+	 * Test getting cats from non existing bookstore
 	 */
-//	@Test
-//	public void testGettingTagsFromPublio() {
-//		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
-//		String tags = fbtf.getTags("blabla", "Publio");
-//		assertThat(tags).isNull();
-//	}
-	
+	@Test
+	public void testGettingCats() {
+		FreeBookCategoriesFinder fbcf = new FreeBookCategoriesFinder("blablabl");
+		Category cat = fbcf.matchCategories("blabla");
+		assertThat(cat.getCategoryType()).isEqualTo("default");
+	}
+
 	/**
 	 * Test getting books from default bookstore with no attribute/pattern set
 	 */
-	@Test 
+	@Test
 	public void testGettingBooksFromNonExistingPartOfBookstore() {
 		FreeBookFinder fbf = new FreeBookFinder("blabla", "blablabla");
-		
+
 		List<String> bookstores = new ArrayList<>();
 		bookstores.add("http://www.helion.pl");
 		Set<Book> books = fbf.getFreeBooks(bookstores);
-		
+
 		assertThat(books).isEmpty();
 	}
-	
+
 	/**
 	 * Test getting books - positive path, no atribute needed in this case
 	 */
 	@Test
 	public void testGettingBooks() {
-		FreeBookFinder fbf = new FreeBookFinder("div.bookListItem a", "blablabla");
-		
+		FreeBookFinder fbf = new FreeBookFinder("a.title", "");
+
 		List<String> bookstores = new ArrayList<>();
-		bookstores.add("http://www.legimi.com/pl/ebooki/darmowe/");
+		bookstores.add("http://www.nexto.pl/ebooki/darmowe_c1219.xml?_offset=");
 		Set<Book> books = fbf.getFreeBooks(bookstores);
-		
+
 		assertThat(books).isNotEmpty();
 	}
-	
-//	@Test
-//	public void testMockingBookstoreResources() {
-//		BookstoreResources bs = mock(BookstoreResources.class);
-//		Set<Book> books = new HashSet<>();
-//		Book book = new Book();
-//		books.add(book);
-//
-//		Mockito.when(bs.getBooks()).thenReturn(books);
-//		
-//		Mockito.verify(bs).equals(obj)
-//		
-//	}
-	
+
 	/**
 	 * Test generating URLS by URLGenerator
 	 */
 	@Test
 	public void testGeneratingURLs() {
 		URLGenerator generator = new URLGenerator();
-		
+
 		List<URL> urls = generator.getUrls();
-		
+
 		assertThat(urls).isNotEmpty();
 	}
-	
+
 	/**
 	 * Test getting bookstores names from properties file
 	 */
@@ -102,16 +93,8 @@ public class RobotTest {
 	public void testGettingBookstoresNames() {
 		PropertiesReader reader = new PropertiesReader();
 		List<String> bookstoresNames = reader.getBookstoresNames();
-		
+
 		assertThat(bookstoresNames).isNotEmpty();
 	}
-	
-//	@Test
-//	public void testParsingFreeBooks() {
-//		FreeBookParser fbp = new FreeBookParser();
-//		
-//		List<BookstoreResources> freeBooks = fbp.freeBooks();
-//		
-//		assertThat(freeBooks).isNotEmpty();
-//	}
+
 }

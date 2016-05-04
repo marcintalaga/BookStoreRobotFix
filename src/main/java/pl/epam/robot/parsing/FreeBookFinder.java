@@ -78,7 +78,6 @@ public class FreeBookFinder {
 			if (attr.isEmpty() && !element.text().isEmpty()) {
 				Book book = new Book();
 				book.setTitleAndAuthor(element.text());
-				book.setCategory(null);
 				freeBooks.add(book);
 			} else if (!element.attr(attr).isEmpty()) {
 				Book book = new Book();

@@ -39,13 +39,10 @@ public class FreeBookCategoriesFinder {
 
 	public Category matchCategories(String bookTitle) {
 		CategoryManager catManager = new CategoryManagerImpl();
-//		if (bookstoreName.equals("Publio")) {
-//			bookTitle = bookTitle.substring(bookTitle.length() / 2);
-//		}
 		if (categories != null && !categories.isEmpty()) {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {
-				if (entry.getKey().equals(bookTitle)) {
+				if (entry.toString().startsWith(bookTitle)) {
 					cat = new Category();
 					cat.setCategoryType(entry.getValue());
 					catManager.saveNewCategory(cat);

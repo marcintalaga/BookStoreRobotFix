@@ -37,9 +37,6 @@ public class FreeBookTagsFinder {
 
 	public Tag matchTags(String bookTitle) {
 		TagManager tagManager = new TagManagerImpl();
-//		if (bookstoreName.equals("Publio")) {
-//			bookTitle = bookTitle.substring(bookTitle.length() / 2);
-//		}
 		if (tags != null && !tags.isEmpty()) {
 			Set<Entry<String, String>> set = tags.entrySet();
 			for (Entry<String, String> entry : set) {
