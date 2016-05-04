@@ -5,4 +5,6 @@ import pl.epam.robot.database.entity.tags.Tag;
 
 public interface TagDAO extends GenericDAO<Tag, Integer>{
 
+	public Tag findById(int id);
+
 }

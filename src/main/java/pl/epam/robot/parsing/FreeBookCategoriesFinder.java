@@ -39,9 +39,9 @@ public class FreeBookCategoriesFinder {
 
 	public Category matchCategories(String bookTitle) {
 		CategoryManager catManager = new CategoryManagerImpl();
-		if (bookstoreName.equals("Publio")) {
-			bookTitle = bookTitle.substring(bookTitle.length() / 2);
-		}
+//		if (bookstoreName.equals("Publio")) {
+//			bookTitle = bookTitle.substring(bookTitle.length() / 2);
+//		}
 		if (categories != null && !categories.isEmpty()) {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {
@@ -52,6 +52,8 @@ public class FreeBookCategoriesFinder {
 					return cat;
 				}
 			}
+		} else {
+			cat = catManager.findCategoryById(1);
 		}
 		return cat;
 	}
