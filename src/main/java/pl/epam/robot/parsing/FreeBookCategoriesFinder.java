@@ -17,28 +17,28 @@ import pl.epam.robot.database.entity.category.CategoryManagerImpl;
 
 public class FreeBookCategoriesFinder {
 
-	private String bookTitle;
 	private String bookstoreName;
+	private Map<String, String> categories;
 	private Category cat;
 
-	public FreeBookCategoriesFinder(String bookTitle, String bookstoreName) {
-		this.bookTitle = bookTitle;
+	public FreeBookCategoriesFinder(String bookstoreName) {
 		this.bookstoreName = bookstoreName;
+		initializeCategories();
 	}
 
-	public Category matchCategories() {
-		
-		CategoryManager catManager = new CategoryManagerImpl();
-		Map<String, String> categories = new HashMap<String, String>();
-
+	private void initializeCategories() {
+		categories = new HashMap<String, String>();
 		if (bookstoreName.equals("Legimi")) {
 			categories = getLegimiCategories();
 		} else if (bookstoreName.equals("Publio")) {
 			categories = getPublioCategories();
 		} else if (bookstoreName.equals("Upoluj Ebooka")) {
 			categories = getUpolujEbookaCategories();
-		}
+		}		
+	}
 
+	public Category matchCategories(String bookTitle) {
+		CategoryManager catManager = new CategoryManagerImpl();
 		if (categories != null && !categories.isEmpty()) {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {

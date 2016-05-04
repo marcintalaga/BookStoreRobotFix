@@ -103,7 +103,7 @@ public class FreeBookFinder {
 		bookstore.setName(bookStoreName);
 		BookstoreManager bm = new BookstoreManagerImpl();
 		bm.saveNewBookstore(bookstore);
-
+		FreeBookCategoriesFinder catfinder = new FreeBookCategoriesFinder(bookstore.getName());
 		for (Book book : freeBooks) {
 			
 			book.setBookstore(bookstore);
@@ -117,8 +117,8 @@ public class FreeBookFinder {
 				tm.saveNewTag(tag);
 				book.setTags(tag);
 			}
-			FreeBookCategoriesFinder catfinder = new FreeBookCategoriesFinder(book.getTitleAndAuthor(), bookstore.getName());
-			book.setCategory(catfinder.matchCategories());
+			
+			book.setCategory(catfinder.matchCategories(book.getTitleAndAuthor()));
 			BookManager bookmanager = new BookManagerImpl();
 			bookmanager.saveNewBook(book);
 
