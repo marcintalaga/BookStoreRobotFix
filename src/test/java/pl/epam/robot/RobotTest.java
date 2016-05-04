@@ -25,22 +25,22 @@ public class RobotTest {
 	/**
 	 * Test getting tags from Nexto bookstore
 	 */
-	@Test
-	public void testGettingTagsFromNexto() {
-		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
-		String tags = fbtf.getTags("blabla", "Nexto");
-		assertThat(tags).isNull();
-	}
+//	@Test
+//	public void testGettingTagsFromNexto() {
+//		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
+//		String tags = fbtf.getTags("blabla", "Nexto");
+//		assertThat(tags).isNull();
+//	}
 	
 	/**
 	 * Test getting tags from Publio bookstore
 	 */
-	@Test
-	public void testGettingTagsFromPublio() {
-		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
-		String tags = fbtf.getTags("blabla", "Publio");
-		assertThat(tags).isNull();
-	}
+//	@Test
+//	public void testGettingTagsFromPublio() {
+//		FreeBookTagsFinder fbtf = new FreeBookTagsFinder();
+//		String tags = fbtf.getTags("blabla", "Publio");
+//		assertThat(tags).isNull();
+//	}
 	
 	/**
 	 * Test getting books from default bookstore with no attribute/pattern set

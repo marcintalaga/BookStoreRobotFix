@@ -3,27 +3,51 @@ package pl.epam.robot.parsing;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import pl.epam.robot.database.entity.tags.Tag;
+import pl.epam.robot.database.entity.tags.TagManager;
+import pl.epam.robot.database.entity.tags.TagManagerImpl;
+
 public class FreeBookTagsFinder {
-	private Map<String, String> nextoTagsList;
-	private Map<String, String> publioTagsList;
 
+	private String bookstoreName;
+	private Map<String, String> tags;
+	private Tag tag;
 
-	public String getTags(String book, String bookstoreName) {
-		String tag = "";
+	public FreeBookTagsFinder(String bookstoreName) {
+		this.bookstoreName = bookstoreName;
+		initializeTags();
+	}
+
+	private void initializeTags() {
+		tags = new HashMap<String, String>();
 		if (bookstoreName.equals("Nexto")) {
-			nextoTagsList = getNextoTags();
-			tag = nextoTagsList.get(book);
+			tags = getNextoTags();
 		} else if (bookstoreName.equals("Publio")) {
-			publioTagsList = getPublioTags();
-			tag = publioTagsList.get(book);
+			tags = getPublioTags();
 		}
-		
+	}
+
+	public Tag matchTags(String bookTitle) {
+		TagManager tagManager = new TagManagerImpl();
+		if (tags != null && !tags.isEmpty()) {
+			Set<Entry<String, String>> set = tags.entrySet();
+			for (Entry<String, String> entry : set) {
+				if (entry.getKey().equals(bookTitle)) {
+					tag = new Tag();
+					tag.setContent(entry.getValue());
+					tagManager.saveNewTag(tag);
+					return tag;
+				}
+			}
+		}
 		return tag;
 	}
 
@@ -47,10 +71,8 @@ public class FreeBookTagsFinder {
 					}
 				}
 			}
-		} catch (
-
-		IOException e) {
-
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return publioTags;
 	}
@@ -77,7 +99,7 @@ public class FreeBookTagsFinder {
 
 			}
 		} catch (IOException e) {
-
+			e.printStackTrace();
 		}
 		return nextoTags;
 	}
