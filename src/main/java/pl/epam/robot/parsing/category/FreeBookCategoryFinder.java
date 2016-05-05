@@ -47,11 +47,19 @@ public class FreeBookCategoryFinder {
 		if (categories != null && !categories.isEmpty()) {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {
-				if (entry.toString().startsWith(bookTitle) || bookTitle.startsWith(entry.getKey().toString())) {
-					cat = new Category();
-					cat.setCategoryType(entry.getValue());
-					catManager.saveNewCategory(cat);
-					return cat;
+				if (entry.getKey().toString().startsWith(bookTitle)
+						|| bookTitle.startsWith(entry.getKey().toString())) {
+					cat = catManager.findCategoryByCategoryType(entry.getValue());
+					if (cat != null) {
+						return cat;
+					} else {
+						cat = new Category();
+						cat.setCategoryType(entry.getValue());
+						catManager.saveNewCategory(cat);
+						return cat;
+					}
+				} else {
+					cat = catManager.findCategoryById(1);
 				}
 			}
 		} else {
