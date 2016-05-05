@@ -55,21 +55,27 @@ public class FreeBookTagsFinder {
 
 	private Map<String, String> getPublioTags() {
 		Map<String, String> publioTags = new HashMap<String, String>();
+		String absHref;
+		Elements elements;
+		String bookTitle;
+		Elements productDetailLabel;
+		Document particularBookConnection;
+
 		try {
 			Document doc = Jsoup.connect("http://www.publio.pl/e-booki,darmowe.html").get();
 
 			Elements ebooks = doc.select("h3.product-tile-title a");
 
 			for (int i = 0; i < ebooks.size(); i++) {
-				String absHref = ebooks.get(i).attr("abs:href");
-				Elements elements = Jsoup.connect(absHref).get().select("div.product-detail");
-
-				String title = Jsoup.connect(absHref).get().select("h1.title ").text();
+				absHref = ebooks.get(i).attr("abs:href");
+				particularBookConnection = Jsoup.connect(absHref).get();
+				elements = particularBookConnection.select("div.product-detail");
+				bookTitle = particularBookConnection.select("h1.title ").text();
 				for (Element element2 : elements) {
 					if ("Tematy i słowa kluczowe:".equals(element2.select("div.product-detail-label").text())) {
 
-						Elements elements2 = element2.select("div.product-detail-value");
-						publioTags.put(title, elements2.text());
+						productDetailLabel = element2.select("div.product-detail-value");
+						publioTags.put(bookTitle, productDetailLabel.text());
 					}
 				}
 			}
@@ -81,23 +87,27 @@ public class FreeBookTagsFinder {
 
 	private HashMap<String, String> getNextoTags() {
 		HashMap<String, String> nextoTags = new HashMap<String, String>();
+		String absHref;
+		Elements tags;
+		String bookTitle;
+		StringBuffer buffer;
+		Document particularBookConnection;
+
 		try {
 			Document doc = Jsoup.connect("http://www.nexto.pl/ebooki/darmowe_c1219.xml?_offset=").get();
-
 			Elements ebooks = doc.select("a.title");
 
 			for (int i = 0; i < ebooks.size(); i++) {
-				String absHref = ebooks.get(i).attr("abs:href");
-
-				Elements url = Jsoup.connect(absHref).get().select("div.panel2 div.tags a");
-				String title = Jsoup.connect(absHref).get().select("div.panel2 h1").text();
-				StringBuffer buffer = new StringBuffer();
-
+				absHref = ebooks.get(i).attr("abs:href");
+				particularBookConnection = Jsoup.connect(absHref).get();
+				tags = particularBookConnection.select("div.panel2 div.tags a");
+				bookTitle = particularBookConnection.select("div.panel2 h1").text();
+				buffer = new StringBuffer();
 				for (int j = 0; j < 5; j++) {
-					buffer.append(url.get(j).text());
+					buffer.append(tags.get(j).text());
 					buffer.append(", ");
 				}
-				nextoTags.put(title.toString(), buffer.toString());
+				nextoTags.put(bookTitle.toString(), buffer.toString());
 
 			}
 		} catch (IOException e) {

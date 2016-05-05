@@ -106,16 +106,15 @@ public class FreeBookCategoriesFinder {
 
 	private Map<String, String> getPublioCategories() {
 		Map<String, String> publioCat = new HashMap<String, String>();
-
+		String absHref;
+		Elements elements;
+		String title;
+		Elements categories;
+		Document particularBookConnection;
 		try {
 			Document doc = Jsoup.connect("http://www.publio.pl/e-booki,darmowe.html").get();
-
 			Elements ebooks = doc.select("h3.product-tile-title a");
-			String absHref;
-			Elements elements;
-			String title;
-			Elements elements2;
-			Document particularBookConnection;
+		
 			for (int i = 0; i < ebooks.size(); i++) {
 				absHref = ebooks.get(i).attr("abs:href");
 				particularBookConnection = Jsoup.connect(absHref).get();
@@ -125,8 +124,8 @@ public class FreeBookCategoriesFinder {
 				for (Element element2 : elements) {
 					if ("Publikacja z kategorii:".equals(element2.select("div.product-detail-label").text())) {
 
-						elements2 = element2.select("div.product-detail-value");
-						publioCat.put(title, elements2.text());
+						categories = element2.select("div.product-detail-value");
+						publioCat.put(title, categories.text());
 					}
 				}
 			}
