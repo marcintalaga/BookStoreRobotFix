@@ -42,7 +42,7 @@ public class FreeBookCategoriesFinder {
 		if (categories != null && !categories.isEmpty()) {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {
-				if (entry.toString().startsWith(bookTitle)) {
+				if (entry.toString().startsWith(bookTitle) || bookTitle.startsWith(entry.getKey().toString()) ) {
 					cat = new Category();
 					cat.setCategoryType(entry.getValue());
 					catManager.saveNewCategory(cat);
