@@ -17,6 +17,8 @@ import pl.epam.robot.database.entity.book.BookManagerImpl;
 import pl.epam.robot.database.entity.bookstore.Bookstore;
 import pl.epam.robot.database.entity.bookstore.BookstoreManager;
 import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
+import pl.epam.robot.parsing.category.FreeBookCategoryFinder;
+import pl.epam.robot.parsing.tag.FreeBookTagsFinder;
 
 /**
  * @author Aleksander
@@ -97,7 +99,7 @@ public class FreeBookFinder {
 		bookstore.setName(bookStoreName);
 		BookstoreManager bm = new BookstoreManagerImpl();
 		bm.saveNewBookstore(bookstore);
-		FreeBookCategoriesFinder catfinder = new FreeBookCategoriesFinder(bookstore.getName());
+		FreeBookCategoryFinder catfinder = new FreeBookCategoryFinder(bookstore.getName());
 		FreeBookTagsFinder tagger = new FreeBookTagsFinder(bookstore.getName());
 		for (Book book : freeBooks) {
 			if (bookStoreName.equals("Publio")) {

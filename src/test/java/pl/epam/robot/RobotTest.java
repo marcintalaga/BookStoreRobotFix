@@ -11,9 +11,9 @@ import org.testng.annotations.Test;
 import pl.epam.robot.database.entity.book.Book;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.tags.Tag;
-import pl.epam.robot.parsing.FreeBookCategoriesFinder;
 import pl.epam.robot.parsing.FreeBookFinder;
-import pl.epam.robot.parsing.FreeBookTagsFinder;
+import pl.epam.robot.parsing.category.FreeBookCategoryFinder;
+import pl.epam.robot.parsing.tag.FreeBookTagsFinder;
 import pl.epam.robot.propertiesReader.PropertiesReader;
 import pl.epam.robot.urlGenerator.URL;
 import pl.epam.robot.urlGenerator.URLGenerator;
@@ -41,7 +41,7 @@ public class RobotTest {
 	 */
 	@Test
 	public void testGettingCats() {
-		FreeBookCategoriesFinder fbcf = new FreeBookCategoriesFinder("blablabl");
+		FreeBookCategoryFinder fbcf = new FreeBookCategoryFinder("blablabl");
 		Category cat = fbcf.matchCategories("blabla");
 		assertThat(cat.getCategoryType()).isEqualTo("default");
 	}
