@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import pl.epam.robot.database.entity.book.Book;
@@ -95,6 +96,33 @@ public class RobotTest {
 		List<String> bookstoresNames = reader.getBookstoresNames();
 
 		assertThat(bookstoresNames).isNotEmpty();
+	}
+
+	@DataProvider(name = "bookstoresForCats")
+	public static Object[][] bookstoresForCats() {
+		return new Object[][] { { "Legimi" }, { "Publio" }, { "Upoluj Ebooka" } };
+	}
+
+	@Test(dataProvider = "bookstoresForCats")
+	public void testMatchingCategoriesForNonExistingBook(String bookstoreName) {
+		FreeBookCategoryFinder fbcf = new FreeBookCategoryFinder(bookstoreName);
+
+		Category c = fbcf.matchCategories("NonexistingBookTitle");
+
+		assertThat(c.getCategoryType()).isEqualTo("default");
+	}
+
+	@DataProvider(name = "bookstoresForTags")
+	public static Object[][] bookstoresForTags() {
+		return new Object[][] { { "Nexto" }, { "Publio" } };
+	}
+
+	@Test(dataProvider = "bookstoresForTags")
+	public void testMatchingTagsForNonExistingBook(String bookstoreName) {
+		FreeBookTagsFinder fbtf = new FreeBookTagsFinder(bookstoreName);
+		Tag t = fbtf.matchTags("NonexistingBookTitle");
+
+		assertThat(t.getContent()).isEqualTo("default");
 	}
 
 }

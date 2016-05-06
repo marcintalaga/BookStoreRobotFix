@@ -33,9 +33,9 @@ public class FreeBookCategoryFinder {
 		if (bookstoreName.equals("Legimi")) {
 			catFinder = new LegimiCategoryFinder();
 		} else if (bookstoreName.equals("Publio")) {
-			catFinder = new LegimiCategoryFinder();
+			catFinder = new PublioCategoryFinder();
 		} else if (bookstoreName.equals("Upoluj Ebooka")) {
-			catFinder = new LegimiCategoryFinder();
+			catFinder = new UpolujEbookaCategoryFinder();
 		}
 		if (catFinder != null) {
 			categories = catFinder.getCategories();

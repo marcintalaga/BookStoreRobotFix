@@ -58,6 +58,8 @@ public class FreeBookTagsFinder {
 					tag.setContent(entry.getValue());
 					tagManager.saveNewTag(tag);
 					return tag;
+				} else {
+					tag = tagManager.getTagById(1);
 				}
 			}
 		} else {
