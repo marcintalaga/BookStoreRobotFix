@@ -17,6 +17,12 @@ import org.apache.log4j.Logger;
 
 import javafx.scene.control.TextInputDialog;
 
+/**
+ * Class which handle default bookstore, defined by user
+ * 
+ * @author paulina
+ *
+ */
 public class CustomBookstoreHandler {
 	private TextInputDialog name = new TextInputDialog();
 	private TextInputDialog urlPrefix = new TextInputDialog();
@@ -127,7 +133,7 @@ public class CustomBookstoreHandler {
 		StringBuilder path = new StringBuilder();
 		path.append(workingDirectory);
 		path.append("/src/main/resources/URL.properties");
-		
+
 		File file = new File(path.toString());
 		FileWriter fileWritter = null;
 		try {

@@ -4,13 +4,23 @@ import java.io.Serializable;
 
 import org.hibernate.Query;
 
-
+/**
+ * Base interface for database management
+ * 
+ * @author paulina
+ *
+ * @param <T>
+ *            element type
+ * @param <ID>
+ *            id type
+ */
 public interface GenericDAO<T, ID extends Serializable> {
-		 
-	    public void save(T entity);
-	    public void delete(T entity);
-//	    public List<T> findMany(Query query);
-	    public T findOne(Query query);
-//	    public List<?> findAll(Class<?> clazz);
-	    public T findByID(Class<?> clazz, Integer id);
+
+	public void save(T entity);
+
+	public void delete(T entity);
+
+	public T findOne(Query query);
+
+	public T findByID(Class<?> clazz, Integer id);
 }

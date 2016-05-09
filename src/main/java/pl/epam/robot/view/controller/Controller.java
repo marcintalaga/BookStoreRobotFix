@@ -23,6 +23,12 @@ import pl.epam.robot.parsing.BookstoreResources;
 import pl.epam.robot.parsing.FreeBookParser;
 import pl.epam.robot.propertiesReader.PropertiesReader;
 
+/**
+ * GUI handler
+ * 
+ * @author paulina
+ *
+ */
 public class Controller extends AnchorPane implements Initializable {
 
 	private static final String RESOURCE_FXML = "SimpleAppJavaFX.fxml";
