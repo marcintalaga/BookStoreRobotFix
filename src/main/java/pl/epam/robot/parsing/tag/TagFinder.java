@@ -10,5 +10,10 @@ import java.util.Map;
  */
 public interface TagFinder {
 
+	/**
+	 * Gets tags from proper website
+	 * 
+	 * @return Map with book title and tag
+	 */
 	public Map<String, String> getTags();
 }

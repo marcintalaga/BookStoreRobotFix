@@ -4,6 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * Some helpfull methods to use Hibernate
+ * 
+ * @author paulina
+ *
+ */
 public class HibernateUtils {
 
 	private static final SessionFactory sessionFactory;
