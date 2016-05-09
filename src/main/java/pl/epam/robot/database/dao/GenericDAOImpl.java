@@ -7,6 +7,16 @@ import org.hibernate.Session;
 
 import pl.epam.robot.database.HibernateUtils;
 
+/**
+ * Implementation of GenericDAO interface
+ * 
+ * @author paulina
+ *
+ * @param <T>
+ *            element type
+ * @param <ID>
+ *            id type
+ */
 public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
 	protected Session getSession() {
@@ -25,14 +35,6 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 		hibernateSession.delete(entity);
 	}
 
-	//
-	// @SuppressWarnings("unchecked")
-	// @Override
-	// public List<T> findMany(Query query) {
-	// List<T> t;
-	// t = (List<T>) query.list();
-	// return t;
-	// }
 	@SuppressWarnings("unchecked")
 	@Override
 	public T findOne(Query query) {
@@ -41,16 +43,6 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 		return t;
 	}
 
-	// @SuppressWarnings("unchecked")
-	// @Override
-	// public List<T> findAll(Class<?> clazz) {
-	// Session hibernateSession = this.getSession();
-	// List<T> T = null;
-	// Query query = hibernateSession.createQuery("from " + clazz.getName());
-	// T = query.list();
-	// return T;
-	// }
-	//
 	@SuppressWarnings("unchecked")
 	@Override
 	public T findByID(Class<?> clazz, Integer id) {

@@ -14,6 +14,12 @@ import pl.epam.robot.database.entity.bookstore.Bookstore;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.tags.Tag;
 
+/**
+ * Book entity
+ * 
+ * @author paulina
+ *
+ */
 @Entity
 @Table(name = "BOOKS")
 public class Book {
@@ -22,23 +28,21 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BOOK_ID", unique = true, nullable = false)
 	private int id;
-	
-	@Column(name="TITLE_AND_AUTHOR", nullable = false)
+
+	@Column(name = "TITLE_AND_AUTHOR", nullable = false)
 	private String titleAndAuthor;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "BOOKSTORE_ID")
 	private Bookstore bookstore;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TAG_ID")
 	private Tag tags;
-	
-	
 
 	public int getId() {
 		return id;
@@ -71,15 +75,15 @@ public class Book {
 	public void setTitleAndAuthor(String titleAndAuthor) {
 		this.titleAndAuthor = titleAndAuthor;
 	}
-	
+
 	public Tag getTags() {
 		return tags;
 	}
-	
+
 	public void setTags(Tag tags) {
 		this.tags = tags;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", tytuł i autor=" + titleAndAuthor + ", kategoria=" + category + ", księgarnia="

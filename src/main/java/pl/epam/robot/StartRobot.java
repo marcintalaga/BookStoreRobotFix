@@ -5,6 +5,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.epam.robot.view.controller.Controller;
 
+/***
+ * Main class to run app
+ * 
+ * @author paulina
+ *
+ */
 public class StartRobot extends Application {
 	private static final String APPLICATION_TITLE = "Free Ebook From BookStore App";
 

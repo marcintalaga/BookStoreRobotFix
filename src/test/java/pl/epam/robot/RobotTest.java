@@ -103,6 +103,11 @@ public class RobotTest {
 		return new Object[][] { { "Legimi" }, { "Publio" }, { "Upoluj Ebooka" } };
 	}
 
+	/**
+	 * Parametrized test of matching categories for non existing book title
+	 * 
+	 * @param bookstoreName
+	 */
 	@Test(dataProvider = "bookstoresForCats")
 	public void testMatchingCategoriesForNonExistingBook(String bookstoreName) {
 		FreeBookCategoryFinder fbcf = new FreeBookCategoryFinder(bookstoreName);
@@ -117,6 +122,11 @@ public class RobotTest {
 		return new Object[][] { { "Nexto" }, { "Publio" } };
 	}
 
+	/**
+	 * Parametrized test of matching tags for non existing book title
+	 * 
+	 * @param bookstoreName
+	 */
 	@Test(dataProvider = "bookstoresForTags")
 	public void testMatchingTagsForNonExistingBook(String bookstoreName) {
 		FreeBookTagsFinder fbtf = new FreeBookTagsFinder(bookstoreName);

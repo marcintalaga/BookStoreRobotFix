@@ -21,6 +21,8 @@ import pl.epam.robot.parsing.category.FreeBookCategoryFinder;
 import pl.epam.robot.parsing.tag.FreeBookTagsFinder;
 
 /**
+ * Class which is used to find free books
+ * 
  * @author Aleksander
  *
  */

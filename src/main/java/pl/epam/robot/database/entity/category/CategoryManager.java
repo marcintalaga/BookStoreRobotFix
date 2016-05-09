@@ -1,5 +1,11 @@
 package pl.epam.robot.database.entity.category;
 
+/**
+ * Helper to manage Category entity
+ * 
+ * @author paulina
+ *
+ */
 public interface CategoryManager {
 
 	public void saveNewCategory(Category category);

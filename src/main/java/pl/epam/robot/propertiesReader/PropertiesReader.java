@@ -8,6 +8,12 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Class used to read properties from proper file
+ * 
+ * @author paulina
+ *
+ */
 public class PropertiesReader {
 	final static Logger bookslogger = Logger.getLogger("booksLogger");
 	final static Logger logger = Logger.getLogger("logger");

@@ -17,6 +17,12 @@ import pl.epam.robot.database.entity.tags.Tag;
 import pl.epam.robot.database.entity.tags.TagManager;
 import pl.epam.robot.database.entity.tags.TagManagerImpl;
 
+/**
+ * Default database tests
+ * 
+ * @author paulina
+ *
+ */
 public class DatabaseTest {
 
 	@Test

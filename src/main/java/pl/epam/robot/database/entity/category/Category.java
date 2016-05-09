@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Category entity
+ * 
+ * @author paulina
+ *
+ */
 @Entity
 @Table(name = "CATEGORIES")
 public class Category {
@@ -18,7 +24,7 @@ public class Category {
 
 	@Column(name = "CATEGORY_TYPE")
 	private String categoryType;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -39,6 +45,5 @@ public class Category {
 	public String toString() {
 		return categoryType.toString();
 	}
-	
-	
+
 }

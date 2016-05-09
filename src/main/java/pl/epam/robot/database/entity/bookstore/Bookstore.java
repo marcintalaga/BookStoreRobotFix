@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Bookstore entity
+ * 
+ * @author paulina
+ *
+ */
 @Entity
 @Table(name = "BOOKSTORES")
 public class Bookstore {
@@ -39,6 +45,5 @@ public class Bookstore {
 	public String toString() {
 		return name;
 	}
-	
-	
+
 }

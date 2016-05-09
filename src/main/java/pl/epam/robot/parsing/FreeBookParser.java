@@ -13,6 +13,8 @@ import pl.epam.robot.urlGenerator.URL;
 import pl.epam.robot.urlGenerator.URLGenerator;
 
 /**
+ * Class to parse free books
+ * 
  * @author Aleksander
  *
  */

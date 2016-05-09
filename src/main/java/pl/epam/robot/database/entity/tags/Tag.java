@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Tag entity
+ * 
+ * @author paulina
+ *
+ */
 @Entity
 @Table(name = "TAGS")
 public class Tag {
@@ -39,7 +45,5 @@ public class Tag {
 	public String toString() {
 		return content;
 	}
-	
-	
 
 }
