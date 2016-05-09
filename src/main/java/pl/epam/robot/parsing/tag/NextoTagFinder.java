@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 /**
- * Get tags from Nexto website
+ * Acquires tags from Nexto website
  * 
  * @author paulina
  *

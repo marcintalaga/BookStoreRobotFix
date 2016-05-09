@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- * Some helpfull methods to use Hibernate
+ * Some methods that are helpful when you use Hibernate
  * 
  * @author paulina
  *

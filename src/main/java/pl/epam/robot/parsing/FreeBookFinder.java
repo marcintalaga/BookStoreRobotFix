@@ -12,16 +12,18 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import pl.epam.robot.database.entity.book.Book;
-import pl.epam.robot.database.entity.book.BookManager;
-import pl.epam.robot.database.entity.book.BookManagerImpl;
+import pl.epam.robot.database.entity.book.BookDAOProxy;
+import pl.epam.robot.database.entity.book.BookDAOProxyImpl;
 import pl.epam.robot.database.entity.bookstore.Bookstore;
-import pl.epam.robot.database.entity.bookstore.BookstoreManager;
-import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
+import pl.epam.robot.database.entity.bookstore.BookstoreDAOProxy;
+import pl.epam.robot.database.entity.bookstore.BookstoreDAOProxyImpl;
 import pl.epam.robot.parsing.category.FreeBookCategoryFinder;
 import pl.epam.robot.parsing.tag.FreeBookTagsFinder;
 
 /**
  * Class which is used to find free books
+ * Crucial class. It uses url.properties to get connected to website, then it parses 
+ * needed information from website and saving it to database.
  * 
  * @author Aleksander
  *
@@ -99,7 +101,7 @@ public class FreeBookFinder {
 
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName(bookStoreName);
-		BookstoreManager bm = new BookstoreManagerImpl();
+		BookstoreDAOProxy bm = new BookstoreDAOProxyImpl();
 		bm.saveNewBookstore(bookstore);
 		FreeBookCategoryFinder catfinder = new FreeBookCategoryFinder(bookstore.getName());
 		FreeBookTagsFinder tagger = new FreeBookTagsFinder(bookstore.getName());
@@ -110,7 +112,7 @@ public class FreeBookFinder {
 			book.setBookstore(bookstore);
 			book.setTags(tagger.matchTags(book.getTitleAndAuthor()));
 			book.setCategory(catfinder.matchCategories(book.getTitleAndAuthor()));
-			BookManager bookmanager = new BookManagerImpl();
+			BookDAOProxy bookmanager = new BookDAOProxyImpl();
 			bookmanager.saveNewBook(book);
 
 			bookslogger.info(book);

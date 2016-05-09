@@ -7,7 +7,7 @@ import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.tags.TagDAO;
 import pl.epam.robot.database.dao.tags.TagDAOImpl;
 
-public class TagManagerImpl implements TagManager{
+public class TagDAOProxyImpl implements TagDAOProxy{
 
 	TagDAO tagDAO = new TagDAOImpl();
 	

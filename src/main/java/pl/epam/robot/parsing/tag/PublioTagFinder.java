@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Get tags from Publio website
+ * Acquires tags from Publio website
  * 
  * @author paulina
  *

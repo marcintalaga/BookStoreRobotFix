@@ -6,11 +6,11 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import pl.epam.robot.database.entity.tags.Tag;
-import pl.epam.robot.database.entity.tags.TagManager;
-import pl.epam.robot.database.entity.tags.TagManagerImpl;
+import pl.epam.robot.database.entity.tags.TagDAOProxy;
+import pl.epam.robot.database.entity.tags.TagDAOProxyImpl;
 
 /**
- * Match tags with books
+ * Matches tags with books
  * 
  * @author paulina
  *
@@ -49,7 +49,7 @@ public class FreeBookTagsFinder {
 	 * @return tags
 	 */
 	public Tag matchTags(String bookTitle) {
-		TagManager tagManager = new TagManagerImpl();
+		TagDAOProxy tagManager = new TagDAOProxyImpl();
 		if (tags != null && !tags.isEmpty()) {
 			Set<Entry<String, String>> set = tags.entrySet();
 			for (Entry<String, String> entry : set) {

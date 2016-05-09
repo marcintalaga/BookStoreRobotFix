@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 /**
- * Downloads categories from Legimi site
+ * Acquires categories from Legimi site
  * 
  * @author paulina
  *

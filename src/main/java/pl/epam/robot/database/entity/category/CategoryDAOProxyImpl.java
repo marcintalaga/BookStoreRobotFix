@@ -6,7 +6,7 @@ import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.category.CategoryDAO;
 import pl.epam.robot.database.dao.category.CategoryDAOImpl;
 
-public class CategoryManagerImpl implements CategoryManager {
+public class CategoryDAOProxyImpl implements CategoryDAOProxy {
 
 	CategoryDAO categoryDAO = new CategoryDAOImpl();
 

@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import pl.epam.robot.view.controller.Controller;
 
 /***
- * Main class to run app
+ * This is the point at which application beggins.
  * 
  * @author paulina
  *

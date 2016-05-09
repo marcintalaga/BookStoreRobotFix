@@ -6,7 +6,7 @@ package pl.epam.robot.database.entity.tags;
  * @author paulina
  *
  */
-public interface TagManager {
+public interface TagDAOProxy {
 
 	public void saveNewTag(Tag tag);
 

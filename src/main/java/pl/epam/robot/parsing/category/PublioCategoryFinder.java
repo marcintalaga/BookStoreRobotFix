@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Downloads categories from Publio site
+ * Acquires categories from Publio site
  * 
  * @author paulina
  *

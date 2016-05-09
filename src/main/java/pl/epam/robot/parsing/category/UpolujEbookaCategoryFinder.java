@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 /**
- * Downloads categories from Upoluj Ebooka site
+ * Acquires categories from Upoluj Ebooka site
  * 
  * @author paulina
  *

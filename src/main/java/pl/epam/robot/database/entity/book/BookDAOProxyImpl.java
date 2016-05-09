@@ -7,7 +7,7 @@ import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.book.BookDAO;
 import pl.epam.robot.database.dao.book.BookDAOImpl;
 
-public class BookManagerImpl implements BookManager {
+public class BookDAOProxyImpl implements BookDAOProxy {
 
 	BookDAO bookDAO = new BookDAOImpl();
 

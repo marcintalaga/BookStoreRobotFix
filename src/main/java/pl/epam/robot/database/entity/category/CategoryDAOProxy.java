@@ -6,7 +6,7 @@ package pl.epam.robot.database.entity.category;
  * @author paulina
  *
  */
-public interface CategoryManager {
+public interface CategoryDAOProxy {
 
 	public void saveNewCategory(Category category);
 

@@ -9,9 +9,10 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 /**
- * Class used to read properties from proper file
+ * Gets bookstores names from properties and puts them into array. Then array is returned.
  * 
  * @author paulina
+ * 
  *
  */
 public class PropertiesReader {

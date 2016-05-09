@@ -13,7 +13,7 @@ import pl.epam.robot.urlGenerator.URL;
 import pl.epam.robot.urlGenerator.URLGenerator;
 
 /**
- * Class to parse free books
+ * Here properties are loaded from external file. Freebooks list is filled in with data.
  * 
  * @author Aleksander
  *

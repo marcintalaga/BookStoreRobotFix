@@ -6,7 +6,7 @@ import pl.epam.robot.database.HibernateUtils;
 import pl.epam.robot.database.dao.bookstore.BookstoreDAO;
 import pl.epam.robot.database.dao.bookstore.BookstoreDAOImpl;
 
-public class BookstoreManagerImpl implements BookstoreManager {
+public class BookstoreDAOProxyImpl implements BookstoreDAOProxy {
 
 	BookstoreDAO bookstoreDAO = new BookstoreDAOImpl();
 

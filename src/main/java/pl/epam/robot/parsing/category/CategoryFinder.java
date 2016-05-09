@@ -3,8 +3,7 @@ package pl.epam.robot.parsing.category;
 import java.util.Map;
 
 /**
- * Interface to download categories
- * 
+ * Gets book title and categories from its website
  * @author paulina
  *
  */

@@ -6,7 +6,7 @@ package pl.epam.robot.database.entity.book;
  * @author paulina
  *
  */
-public interface BookManager {
+public interface BookDAOProxy {
 
 	public void saveNewBook(Book book);
 

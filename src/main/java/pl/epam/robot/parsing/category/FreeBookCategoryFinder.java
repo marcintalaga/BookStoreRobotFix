@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import pl.epam.robot.database.entity.category.Category;
-import pl.epam.robot.database.entity.category.CategoryManager;
-import pl.epam.robot.database.entity.category.CategoryManagerImpl;
+import pl.epam.robot.database.entity.category.CategoryDAOProxy;
+import pl.epam.robot.database.entity.category.CategoryDAOProxyImpl;
 
 /**
  * An object which is used to match book with its category - finds the category
@@ -43,7 +43,7 @@ public class FreeBookCategoryFinder {
 	}
 
 	public Category matchCategories(String bookTitle) {
-		CategoryManager catManager = new CategoryManagerImpl();
+		CategoryDAOProxy catManager = new CategoryDAOProxyImpl();
 		if (categories != null && !categories.isEmpty()) {
 			Set<Entry<String, String>> set = categories.entrySet();
 			for (Entry<String, String> entry : set) {

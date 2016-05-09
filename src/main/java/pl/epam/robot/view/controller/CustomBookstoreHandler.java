@@ -18,7 +18,8 @@ import org.apache.log4j.Logger;
 import javafx.scene.control.TextInputDialog;
 
 /**
- * Class which handle default bookstore, defined by user
+ * GUI implementation.
+ * Default bookstore is handled here. 
  * 
  * @author paulina
  *

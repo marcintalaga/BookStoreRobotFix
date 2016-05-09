@@ -5,17 +5,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.Test;
 
 import pl.epam.robot.database.entity.book.Book;
-import pl.epam.robot.database.entity.book.BookManager;
-import pl.epam.robot.database.entity.book.BookManagerImpl;
+import pl.epam.robot.database.entity.book.BookDAOProxy;
+import pl.epam.robot.database.entity.book.BookDAOProxyImpl;
 import pl.epam.robot.database.entity.bookstore.Bookstore;
-import pl.epam.robot.database.entity.bookstore.BookstoreManager;
-import pl.epam.robot.database.entity.bookstore.BookstoreManagerImpl;
+import pl.epam.robot.database.entity.bookstore.BookstoreDAOProxy;
+import pl.epam.robot.database.entity.bookstore.BookstoreDAOProxyImpl;
 import pl.epam.robot.database.entity.category.Category;
-import pl.epam.robot.database.entity.category.CategoryManager;
-import pl.epam.robot.database.entity.category.CategoryManagerImpl;
+import pl.epam.robot.database.entity.category.CategoryDAOProxy;
+import pl.epam.robot.database.entity.category.CategoryDAOProxyImpl;
 import pl.epam.robot.database.entity.tags.Tag;
-import pl.epam.robot.database.entity.tags.TagManager;
-import pl.epam.robot.database.entity.tags.TagManagerImpl;
+import pl.epam.robot.database.entity.tags.TagDAOProxy;
+import pl.epam.robot.database.entity.tags.TagDAOProxyImpl;
 
 /**
  * Default database tests
@@ -29,19 +29,19 @@ public class DatabaseTest {
 	public void testAddingAndDeletingBook() {
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName("DefaultName");
-		BookstoreManager bm = new BookstoreManagerImpl();
+		BookstoreDAOProxy bm = new BookstoreDAOProxyImpl();
 		bm.saveNewBookstore(bookstore);
 		assertThat(bookstore.getId()).isNotNull();
 
 		Category cat = new Category();
 		cat.setCategoryType("blabla");
-		CategoryManager cm = new CategoryManagerImpl();
+		CategoryDAOProxy cm = new CategoryDAOProxyImpl();
 		cm.saveNewCategory(cat);
 		assertThat(cat.getId()).isNotNull();
 
 		Tag tag = new Tag();
 		tag.setContent("default content");
-		TagManager tm = new TagManagerImpl();
+		TagDAOProxy tm = new TagDAOProxyImpl();
 		tm.saveNewTag(tag);
 		assertThat(tag.getId()).isNotNull();
 
@@ -50,7 +50,7 @@ public class DatabaseTest {
 		book.setCategory(cat);
 		book.setTags(tag);
 		book.setTitleAndAuthor("default title and author");
-		BookManager bookManager = new BookManagerImpl();
+		BookDAOProxy bookManager = new BookDAOProxyImpl();
 		bookManager.saveNewBook(book);
 		assertThat(book.getId()).isNotNull();
 
@@ -64,7 +64,7 @@ public class DatabaseTest {
 	public void testFindingBookByTitleAndAuthor() {
 		Book book = new Book();
 		book.setTitleAndAuthor("default title and author");
-		BookManager bookManager = new BookManagerImpl();
+		BookDAOProxy bookManager = new BookDAOProxyImpl();
 		bookManager.saveNewBook(book);
 		assertThat(book.getId()).isNotNull();
 
@@ -80,7 +80,7 @@ public class DatabaseTest {
 	public void testSavingBookWithoutTitle() {
 		Book book = new Book();
 
-		BookManager bookManager = new BookManagerImpl();
+		BookDAOProxy bookManager = new BookDAOProxyImpl();
 		bookManager.saveNewBook(book);
 		assertThat(book.getId()).isEqualTo(0);
 	}
@@ -89,7 +89,7 @@ public class DatabaseTest {
 	public void testFindingCategoryById() {
 		Category cat = new Category();
 		cat.setCategoryType("blabla");
-		CategoryManager cm = new CategoryManagerImpl();
+		CategoryDAOProxy cm = new CategoryDAOProxyImpl();
 		cm.saveNewCategory(cat);
 		assertThat(cat.getId()).isNotNull();
 
