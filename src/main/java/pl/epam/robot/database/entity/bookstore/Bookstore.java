@@ -43,7 +43,7 @@ public class Bookstore {
 
 	@Override
 	public String toString() {
-		return name;
+		return "Bookstore: " + name;
 	}
 
 }

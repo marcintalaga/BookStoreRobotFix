@@ -43,7 +43,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return categoryType.toString();
+		return "Category: " + categoryType;
 	}
 
 }
