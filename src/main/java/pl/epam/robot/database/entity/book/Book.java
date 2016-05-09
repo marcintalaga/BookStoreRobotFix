@@ -1,5 +1,6 @@
 package pl.epam.robot.database.entity.book;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,15 +33,15 @@ public class Book {
 	@Column(name = "TITLE_AND_AUTHOR", nullable = false)
 	private String titleAndAuthor;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "BOOKSTORE_ID")
 	private Bookstore bookstore;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "TAG_ID")
 	private Tag tags;
 
