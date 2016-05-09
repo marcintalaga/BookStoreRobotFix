@@ -6,6 +6,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<testng-version>6.9.10</testng-version>
+		<assertj-version>3.4.1</assertj-version> 
+		<jsoup-version>1.9.1</jsoup-version> 
+		<log4j-version>1.2.17</log4j-version> 
+		<mockito-version>2.0.2-beta</mockito-version> 
+		<mysql-version>5.1.38</mysql-version> 
+		<hibernate-version>5.1.0.Final</hibernate-version> 
+		<javassist-version>3.12.1.GA</javassist-version> 
 	</properties>
 	<prerequisites>
 		<maven>3.0</maven>
@@ -15,29 +23,29 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.8</version>
-			<scope>compile</scope>
+			<version>${testng-version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>2.3.0</version>
+			<version>${assertj-version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.8.3</version>
+			<version>${jsoup-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<version>${log4j-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-			<version>2.0.2-beta</version>
+			<version>${mockito-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-configuration</groupId>
@@ -47,22 +55,17 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.38</version>
+			<version>${mysql-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.1.0.Final</version>
+			<version>${hibernate-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>3.12.1.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans</groupId>
-			<artifactId>jemmy</artifactId>
-			<version>2.2.7.5</version>
+			<version>${javassist-version}</version>
 		</dependency>
 	</dependencies>
 	<build>
