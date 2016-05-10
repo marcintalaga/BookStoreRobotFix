@@ -25,7 +25,7 @@ import pl.epam.robot.database.entity.tags.TagDAOProxyImpl;
  */
 public class DatabaseTest {
 
-	@Test
+	@Test(groups = "fastTests")
 	public void testAddingAndDeletingBook() {
 		Bookstore bookstore = new Bookstore();
 		bookstore.setName("DefaultName");
@@ -60,7 +60,7 @@ public class DatabaseTest {
 		cm.deleteCategory(cat);
 	}
 
-	@Test
+	@Test(groups = "fastTests")
 	public void testFindingBookByTitleAndAuthor() {
 		Book book = new Book();
 		book.setTitleAndAuthor("default title and author");
@@ -76,7 +76,7 @@ public class DatabaseTest {
 		bookManager.deleteBook(book);
 	}
 
-	@Test
+	@Test(groups = "fastTests")
 	public void testSavingBookWithoutTitle() {
 		Book book = new Book();
 
@@ -85,7 +85,7 @@ public class DatabaseTest {
 		assertThat(book.getId()).isEqualTo(0);
 	}
 
-	@Test
+	@Test(groups = "fastTests")
 	public void testFindingCategoryById() {
 		Category cat = new Category();
 		cat.setCategoryType("blabla");

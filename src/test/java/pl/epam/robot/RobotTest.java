@@ -30,7 +30,7 @@ public class RobotTest {
 	/**
 	 * Test getting tags from non existing bookstore
 	 */
-	@Test
+	@Test(groups = "fastTests")
 	public void testGettingTags() {
 		FreeBookTagsFinder fbtf = new FreeBookTagsFinder("blablabl");
 		Tag tag = fbtf.matchTags("blabla");
@@ -40,17 +40,17 @@ public class RobotTest {
 	/**
 	 * Test getting cats from non existing bookstore
 	 */
-	@Test
+	@Test(groups = "fastTests")
 	public void testGettingCats() {
 		FreeBookCategoryFinder fbcf = new FreeBookCategoryFinder("blablabl");
 		Category cat = fbcf.matchCategories("blabla");
 		assertThat(cat.getCategoryType()).isEqualTo("default");
 	}
-
+	 
 	/**
 	 * Test getting books from default bookstore with no attribute/pattern set
 	 */
-	@Test
+	@Test(groups = "fastTests")
 	public void testGettingBooksFromNonExistingPartOfBookstore() {
 		FreeBookFinder fbf = new FreeBookFinder("blabla", "blablabla");
 
@@ -60,11 +60,11 @@ public class RobotTest {
 
 		assertThat(books).isEmpty();
 	}
-
+	
 	/**
 	 * Test getting books - positive path, no atribute needed in this case
 	 */
-	@Test
+	@Test(groups = "fastTests")
 	public void testGettingBooks() {
 		FreeBookFinder fbf = new FreeBookFinder("a.title", "");
 
@@ -78,7 +78,7 @@ public class RobotTest {
 	/**
 	 * Test generating URLS by URLGenerator
 	 */
-	@Test
+	@Test(groups = "fastTests")
 	public void testGeneratingURLs() {
 		URLGenerator generator = new URLGenerator();
 
@@ -90,7 +90,7 @@ public class RobotTest {
 	/**
 	 * Test getting bookstores names from properties file
 	 */
-	@Test
+	@Test(groups = "fastTests")
 	public void testGettingBookstoresNames() {
 		PropertiesReader reader = new PropertiesReader();
 		List<String> bookstoresNames = reader.getBookstoresNames();
@@ -98,16 +98,16 @@ public class RobotTest {
 		assertThat(bookstoresNames).isNotEmpty();
 	}
 
-	@DataProvider(name = "bookstoresForCats")
+/*	@DataProvider(name = "bookstoresForCats")
 	public static Object[][] bookstoresForCats() {
 		return new Object[][] { { "Legimi" }, { "Publio" }, { "Upoluj Ebooka" } };
 	}
 
-	/**
+	*//**
 	 * Parametrized test of matching categories for non existing book title
 	 * 
 	 * @param bookstoreName
-	 */
+	 *//*
 	@Test(dataProvider = "bookstoresForCats")
 	public void testMatchingCategoriesForNonExistingBook(String bookstoreName) {
 		FreeBookCategoryFinder fbcf = new FreeBookCategoryFinder(bookstoreName);
@@ -115,7 +115,7 @@ public class RobotTest {
 		Category c = fbcf.matchCategories("NonexistingBookTitle");
 
 		assertThat(c.getCategoryType()).isEqualTo("default");
-	}
+	}*/
 
 	@DataProvider(name = "bookstoresForTags")
 	public static Object[][] bookstoresForTags() {
@@ -127,7 +127,7 @@ public class RobotTest {
 	 * 
 	 * @param bookstoreName
 	 */
-	@Test(dataProvider = "bookstoresForTags")
+	@Test(dataProvider = "bookstoresForTags", groups="fastTests")
 	public void testMatchingTagsForNonExistingBook(String bookstoreName) {
 		FreeBookTagsFinder fbtf = new FreeBookTagsFinder(bookstoreName);
 		Tag t = fbtf.matchTags("NonexistingBookTitle");
