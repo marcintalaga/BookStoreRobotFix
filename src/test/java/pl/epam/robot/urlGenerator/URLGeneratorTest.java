@@ -7,6 +7,7 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 public class URLGeneratorTest {
+	
 	/**
 	 * Test generating URLS by URLGenerator
 	 */

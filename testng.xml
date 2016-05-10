@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="none">
+<suite name="Suite" parallel="false">
   <test name="Test">
     <classes>
-      <class name="pl.epam.robot.RobotTest"/>
+      <class name="pl.epam.robot.parsing.FreeBookFinderTest"/>
+      <class name="pl.epam.robot.parsing.tag.FreeBookTagFinderTest"/>
+      <class name="pl.epam.robot.parsing.category.FreeBookCategoryFinderTest"/>
+      <class name="pl.epam.robot.propertiesReader.PropertiesReaderTest"/>
+      <class name="pl.epam.robot.urlGenerator.URLGeneratorTest"/>
       <class name="pl.epam.robot.database.DatabaseTest"/>
     </classes>
   </test> <!-- Test -->

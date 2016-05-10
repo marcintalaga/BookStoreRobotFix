@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pl.epam.robot.database.entity.tags.Tag;
 
 public class FreeBookTagFinderTest {
+	
 	/**
 	 * Test getting tags from non existing bookstore
 	 */
@@ -17,7 +18,7 @@ public class FreeBookTagFinderTest {
 		Tag tag = fbtf.matchTags("blabla");
 		assertThat(tag.getContent()).isEqualTo("default");
 	}
-	
+
 	@DataProvider(name = "bookstoresForTags")
 	public static Object[][] bookstoresForTags() {
 		return new Object[][] { { "Nexto" }, { "Publio" } };
@@ -28,7 +29,7 @@ public class FreeBookTagFinderTest {
 	 * 
 	 * @param bookstoreName
 	 */
-	@Test(dataProvider = "bookstoresForTags", groups="fastTests")
+	@Test(dataProvider = "bookstoresForTags", groups = "fastTests")
 	public void testMatchingTagsForNonExistingBook(String bookstoreName) {
 		FreeBookTagsFinder fbtf = new FreeBookTagsFinder(bookstoreName);
 		Tag t = fbtf.matchTags("NonexistingBookTitle");
