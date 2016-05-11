@@ -4,6 +4,7 @@
   <test name="Test">
     <classes>
       <class name="pl.epam.robot.parsing.FreeBookFinderTest"/>
+      <class name="pl.epam.robot.parsing.FreeBookParserTests"/>
       <class name="pl.epam.robot.parsing.tag.FreeBookTagFinderTest"/>
       <class name="pl.epam.robot.parsing.category.FreeBookCategoryFinderTest"/>
       <class name="pl.epam.robot.propertiesReader.PropertiesReaderTest"/>
