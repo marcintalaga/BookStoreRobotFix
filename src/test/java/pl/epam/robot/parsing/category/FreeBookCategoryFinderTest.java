@@ -12,7 +12,7 @@ public class FreeBookCategoryFinderTest {
 	/**
 	 * Test getting cats from non existing bookstore
 	 */
-	@Test(groups = "fastTests")
+	@Test(groups = {"fastTests", "nonDatabaseTests"})
 	public void testGettingCats() {
 		FreeBookCategoryFinder fbcf = new FreeBookCategoryFinder("blablabl");
 		Category cat = fbcf.matchCategories("blabla");
@@ -29,7 +29,7 @@ public class FreeBookCategoryFinderTest {
 	 * 
 	 * @param bookstoreName
 	 */
-	@Test(dataProvider = "bookstoresForCats")
+	@Test(dataProvider = "bookstoresForCats", groups = "nonDatabaseTests")
 	public void testMatchingCategoriesForNonExistingBook(String bookstoreName) {
 		FreeBookCategoryFinder fbcf = new FreeBookCategoryFinder(bookstoreName);
 

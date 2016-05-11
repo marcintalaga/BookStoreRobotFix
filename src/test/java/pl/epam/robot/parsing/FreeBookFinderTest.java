@@ -14,7 +14,7 @@ public class FreeBookFinderTest {
 	/**
 	 * Test getting books from default bookstore with no attribute/pattern set
 	 */
-	@Test(groups = "fastTests")
+	@Test(groups = {"fastTests", "nonDatabaseTests"})
 	public void testGettingBooksFromNonExistingPartOfBookstore() {
 		FreeBookFinder fbf = new FreeBookFinder("blabla", "blablabla");
 
@@ -28,7 +28,7 @@ public class FreeBookFinderTest {
 	/**
 	 * Test getting books - positive path, no atribute needed in this case
 	 */
-	@Test(groups = "fastTests")
+	@Test(groups = {"fastTests", "nonDatabaseTests"})
 	public void testGettingBooks() {
 		FreeBookFinder fbf = new FreeBookFinder("a.title", "");
 

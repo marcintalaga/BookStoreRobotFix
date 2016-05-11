@@ -9,7 +9,7 @@ public class FreeBookParserTest {
 	/**
 	 * Here we check if method is not returning empty list.
 	 */
-	@Test
+	@Test(groups = {"fastTests", "nonDatabaseTests"})
 	public void testIfBooksAreProperlyAdded() {
 		List<BookstoreResources> list;
 		FreeBookParser fbp = new FreeBookParser();

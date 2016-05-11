@@ -25,42 +25,7 @@ import pl.epam.robot.database.entity.tags.TagDAOProxyImpl;
  */
 public class DatabaseTest {
 
-	@Test(groups = "fastTests")
-	public void testAddingAndDeletingBook() {
-		Bookstore bookstore = new Bookstore();
-		bookstore.setName("DefaultName");
-		BookstoreDAOProxy bm = new BookstoreDAOProxyImpl();
-		bm.saveNewBookstore(bookstore);
-		assertThat(bookstore.getId()).isNotNull();
-
-		Category cat = new Category();
-		cat.setCategoryType("blabla");
-		CategoryDAOProxy cm = new CategoryDAOProxyImpl();
-		cm.saveNewCategory(cat);
-		assertThat(cat.getId()).isNotNull();
-
-		Tag tag = new Tag();
-		tag.setContent("default content");
-		TagDAOProxy tm = new TagDAOProxyImpl();
-		tm.saveNewTag(tag);
-		assertThat(tag.getId()).isNotNull();
-
-		Book book = new Book();
-		book.setBookstore(bookstore);
-		book.setCategory(cat);
-		book.setTags(tag);
-		book.setTitleAndAuthor("default title and author");
-		BookDAOProxy bookManager = new BookDAOProxyImpl();
-		bookManager.saveNewBook(book);
-		assertThat(book.getId()).isNotNull();
-
-		bookManager.deleteBook(book);
-		tm.deleteTag(tag);
-		bm.deleteBookstore(bookstore);
-		cm.deleteCategory(cat);
-	}
-
-	@Test(groups = "fastTests")
+	@Test(groups = { "fastTests", "databaseTests" })
 	public void testFindingBookByTitleAndAuthor() {
 		Book book = new Book();
 		book.setTitleAndAuthor("default title and author");
@@ -76,7 +41,7 @@ public class DatabaseTest {
 		bookManager.deleteBook(book);
 	}
 
-	@Test(groups = "fastTests")
+	@Test(groups = { "fastTests", "databaseTests" })
 	public void testSavingBookWithoutTitle() {
 		Book book = new Book();
 
@@ -85,7 +50,7 @@ public class DatabaseTest {
 		assertThat(book.getId()).isEqualTo(0);
 	}
 
-	@Test(groups = "fastTests")
+	@Test(groups = { "fastTests", "databaseTests" })
 	public void testFindingCategoryById() {
 		Category cat = new Category();
 		cat.setCategoryType("blabla");

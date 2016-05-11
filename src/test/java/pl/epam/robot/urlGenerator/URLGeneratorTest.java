@@ -11,7 +11,7 @@ public class URLGeneratorTest {
 	/**
 	 * Test generating URLS by URLGenerator
 	 */
-	@Test(groups = "fastTests")
+	@Test(groups = {"fastTests", "nonDatabaseTests"})
 	public void testGeneratingURLs() {
 		URLGenerator generator = new URLGenerator();
 

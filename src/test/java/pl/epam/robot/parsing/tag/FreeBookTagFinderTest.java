@@ -12,7 +12,7 @@ public class FreeBookTagFinderTest {
 	/**
 	 * Test getting tags from non existing bookstore
 	 */
-	@Test(groups = "fastTests")
+	@Test(groups = {"fastTests", "nonDatabaseTests"})
 	public void testGettingTags() {
 		FreeBookTagsFinder fbtf = new FreeBookTagsFinder("blablabl");
 		Tag tag = fbtf.matchTags("blabla");
@@ -29,7 +29,7 @@ public class FreeBookTagFinderTest {
 	 * 
 	 * @param bookstoreName
 	 */
-	@Test(dataProvider = "bookstoresForTags", groups = "fastTests")
+	@Test(dataProvider = "bookstoresForTags", groups = {"fastTests", "nonDatabaseTests"} )
 	public void testMatchingTagsForNonExistingBook(String bookstoreName) {
 		FreeBookTagsFinder fbtf = new FreeBookTagsFinder(bookstoreName);
 		Tag t = fbtf.matchTags("NonexistingBookTitle");

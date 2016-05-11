@@ -12,7 +12,7 @@ public class PropertiesReaderTest {
 	/**
 	 * Test getting bookstores names from properties file
 	 */
-	@Test(groups = "fastTests")
+	@Test(groups = {"fastTests", "nonDatabaseTests"})
 	public void testGettingBookstoresNames() {
 		PropertiesReader reader = new PropertiesReader();
 		List<String> bookstoresNames = reader.getBookstoresNames();
