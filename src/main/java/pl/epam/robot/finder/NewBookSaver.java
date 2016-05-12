@@ -15,35 +15,47 @@ import pl.epam.robot.parsing.tag.FreeBookTagsFinder;
 
 public class NewBookSaver {
 
-	final static Logger bookslogger = Logger.getLogger("booksLogger");
+	private final static Logger bookslogger = Logger.getLogger("booksLogger");
 
 	private Set<Book> freeBooks;
-	private String bookStoreName;
+	private FreeBookCategoryFinder catfinder;
+	private FreeBookTagsFinder tagger;
+	private Bookstore bookstore;
 
-	public NewBookSaver(Set<Book> freeBooks, String bookStoreName) {
+	public NewBookSaver(Set<Book> freeBooks, String bookstoreName) {
 		this.freeBooks = freeBooks;
-		this.bookStoreName = bookStoreName;
+		bookstore = new Bookstore();
+		bookstore.setName(bookstoreName);
 	}
 
+	/**
+	 * Saves entities (Categories,Tags,Bookstores) related to Book entity
+	 */
 	public void save() {
-		Bookstore bookstore = new Bookstore();
-		bookstore.setName(bookStoreName);
 		BookstoreDAOProxy bm = new BookstoreDAOProxyImpl();
 		bm.saveNewBookstore(bookstore);
-		FreeBookCategoryFinder catfinder = new FreeBookCategoryFinder(bookstore.getName());
-		FreeBookTagsFinder tagger = new FreeBookTagsFinder(bookstore.getName());
+		catfinder = new FreeBookCategoryFinder(bookstore.getName());
+		tagger = new FreeBookTagsFinder(bookstore.getName());
 		for (Book book : freeBooks) {
-			if (bookStoreName.equals("Publio")) {
-				book.setTitleAndAuthor(book.getTitleAndAuthor().substring(book.getTitleAndAuthor().length() / 2));
-			}
-			book.setBookstore(bookstore);
-			book.setTags(tagger.matchTags(book.getTitleAndAuthor()));
-			book.setCategory(catfinder.matchCategories(book.getTitleAndAuthor()));
-			BookDAOProxy bookmanager = new BookDAOProxyImpl();
-			bookmanager.saveNewBook(book);
-
-			bookslogger.info(book);
+			saveSingleBook(book);
 		}
+	}
+
+	/**
+	 * Saves single Book entity
+	 * 
+	 * @param book
+	 */
+	private void saveSingleBook(Book book) {
+		if (bookstore != null && bookstore.getName().equals("Publio")) {
+			book.setTitleAndAuthor(book.getTitleAndAuthor().substring(book.getTitleAndAuthor().length() / 2));
+		}
+		book.setBookstore(bookstore);
+		book.setTags(tagger.matchTags(book.getTitleAndAuthor()));
+		book.setCategory(catfinder.matchCategories(book.getTitleAndAuthor()));
+		BookDAOProxy bookmanager = new BookDAOProxyImpl();
+		bookmanager.saveNewBook(book);
+		bookslogger.info(book);
 	}
 
 }

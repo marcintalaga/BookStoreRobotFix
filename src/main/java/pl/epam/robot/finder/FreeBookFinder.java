@@ -64,7 +64,7 @@ public class FreeBookFinder {
 	/**
 	 * Selecting website component based of pattern and attribute (instance
 	 * variables) Adding selected component to the list. If there is no
-	 * attribute in URL.properties method will add doc.select(pattern).text();
+	 * attribute in {@link /BookstoreRobot/src/main/resources/URL.properties}URL.properties method will add doc.select(pattern).text();
 	 * 
 	 * @see <a href="http://jsoup.org/cookbook/extracting-data/selector-syntax">
 	 *      http://jsoup.org/cookbook/extracting-data/selector-syntax</a>
