@@ -7,15 +7,9 @@ import org.testng.annotations.Test;
 import pl.epam.robot.database.entity.book.Book;
 import pl.epam.robot.database.entity.book.BookDAOProxy;
 import pl.epam.robot.database.entity.book.BookDAOProxyImpl;
-import pl.epam.robot.database.entity.bookstore.Bookstore;
-import pl.epam.robot.database.entity.bookstore.BookstoreDAOProxy;
-import pl.epam.robot.database.entity.bookstore.BookstoreDAOProxyImpl;
 import pl.epam.robot.database.entity.category.Category;
 import pl.epam.robot.database.entity.category.CategoryDAOProxy;
 import pl.epam.robot.database.entity.category.CategoryDAOProxyImpl;
-import pl.epam.robot.database.entity.tags.Tag;
-import pl.epam.robot.database.entity.tags.TagDAOProxy;
-import pl.epam.robot.database.entity.tags.TagDAOProxyImpl;
 
 /**
  * Default database tests

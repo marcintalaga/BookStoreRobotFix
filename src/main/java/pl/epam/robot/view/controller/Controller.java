@@ -18,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import pl.epam.robot.StartRobot;
 import pl.epam.robot.database.entity.book.Book;
 import pl.epam.robot.parsing.BookstoreResources;
 import pl.epam.robot.parsing.FreeBookParser;
@@ -31,7 +32,7 @@ import pl.epam.robot.propertiesReader.PropertiesReader;
  */
 public class Controller extends AnchorPane implements Initializable {
 
-	private static final String RESOURCE_FXML = "SimpleAppJavaFX.fxml";
+	private static final String RESOURCE_FXML = "/SimpleAppJavaFX.fxml";
 	private static final String DEFAULT_COMBOBOX_VALUE = "Bookstores";
 
 	@FXML
@@ -56,6 +57,7 @@ public class Controller extends AnchorPane implements Initializable {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(RESOURCE_FXML));
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
+		fxmlLoader.setLocation(StartRobot.class.getResource("/SimpleAppJavaFX.fxml"));
 		setBookStoresWithBooksMap();
 		try {
 			fxmlLoader.load();

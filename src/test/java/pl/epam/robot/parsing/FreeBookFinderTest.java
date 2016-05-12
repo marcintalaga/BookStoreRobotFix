@@ -9,6 +9,7 @@ import java.util.Set;
 import org.testng.annotations.Test;
 
 import pl.epam.robot.database.entity.book.Book;
+import pl.epam.robot.finder.FreeBookFinder;
 
 public class FreeBookFinderTest {
 	/**
