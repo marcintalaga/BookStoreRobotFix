@@ -23,6 +23,10 @@ Open your Robot's directory and type in console:
 ``` sh
 mvn test
 ```
+Writing this will run all tests. Some of them may take a long time to be runned. To avoid time consuming tests you can type instead:
+```sh
+mvn test -Dgroups=fastTests
+```
 
 
 What do I need to have on my machine to run this Robot?
@@ -33,4 +37,19 @@ All you have to have is:
 > - internet connection
 
 Those are all things you have to take care of. Other things that are necessary for Robot to be properly executed would be downloaded due to maven dependencies included in pom.xml file.
+
+You don't want to update mysql version. This can cause a lot unexpected and unpredictable problems, newer versions are not supported by current version of program.
+
+How can I change URL related with one of available bookstores?
+-------------
+First of all you have to find URL.properties file. It is stored in /BookStoreRobotFix/src/main/resources directory. When some changes in URL has occured, simply replace proper URL with new one. Save changes.
+
+How can I add bookstore to my robot?
+-------------
+This is a little tough to do. As you can see in URL.properties file, every single bookstore has its own set of attributes and patterns that needs to be filled. If you have no experiance in parsing and scrapping html, please contact one of the creators of robot via e-mail:
+```sh
+paulina-koks-nie-dziewczyna@buziaczek.ru
+marcintalaga@gmail.ru
+```
+If you are experianced in this field, this should not be a problem for you:)
 
