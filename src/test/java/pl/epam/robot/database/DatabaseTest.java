@@ -2,8 +2,10 @@ package pl.epam.robot.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
+import pl.epam.robot.database.dao.book.BookDAO;
 import pl.epam.robot.database.entity.book.Book;
 import pl.epam.robot.database.entity.book.BookDAOProxy;
 import pl.epam.robot.database.entity.book.BookDAOProxyImpl;
@@ -59,4 +61,16 @@ public class DatabaseTest {
 
 		cm.deleteCategory(cat);
 	}
+	
+	@Test
+	public void testMockedDB() {
+		BookDAOProxyImpl bdp = new BookDAOProxyImpl();
+		BookDAO mock = Mockito.mock(BookDAO.class);
+		bdp.bookDAO = mock;
+		Book book = Mockito.mock(Book.class);
+		bdp.saveNewBook(book);
+		
+		Mockito.verify(mock).save(book);
+	}
+	
 }

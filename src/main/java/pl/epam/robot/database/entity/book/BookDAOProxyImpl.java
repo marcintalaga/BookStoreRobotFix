@@ -9,7 +9,7 @@ import pl.epam.robot.database.dao.book.BookDAOImpl;
 
 public class BookDAOProxyImpl implements BookDAOProxy {
 
-	BookDAO bookDAO = new BookDAOImpl();
+	public BookDAO bookDAO = new BookDAOImpl();
 
 	@Override
 	public void saveNewBook(Book book) {

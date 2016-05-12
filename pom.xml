@@ -24,6 +24,7 @@
 		<maven-javadoc-version>2.10.3</maven-javadoc-version>
 		<jdepend-version>2.0</jdepend-version>
 		<commons-version>1.10</commons-version>
+		<dbunit-version>2.5.2</dbunit-version>
 	</properties>
 	<prerequisites>
 		<maven>3.0</maven>
@@ -78,6 +79,12 @@
 			<artifactId>javassist</artifactId>
 			<version>${javassist-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>${dbunit-version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
