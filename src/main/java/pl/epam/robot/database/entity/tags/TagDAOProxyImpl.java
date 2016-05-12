@@ -3,7 +3,7 @@ package pl.epam.robot.database.entity.tags;
 import org.hibernate.HibernateException;
 import org.hibernate.NonUniqueResultException;
 
-import pl.epam.robot.database.HibernateUtils;
+import pl.epam.robot.database.HibernateSessionManager;
 import pl.epam.robot.database.dao.tags.TagDAO;
 import pl.epam.robot.database.dao.tags.TagDAOImpl;
 
@@ -14,24 +14,24 @@ public class TagDAOProxyImpl implements TagDAOProxy{
 	@Override
 	public void saveNewTag(Tag tag) {
 		try {
-            HibernateUtils.beginTransaction();
+            HibernateSessionManager.beginTransaction();
             tagDAO.save(tag);
-            HibernateUtils.commitTransaction();
+            HibernateSessionManager.commitTransaction();
         } catch (HibernateException ex) {
             System.out.println("Cos poszlo nie tak z zapisywaniem!"+ ex.getMessage());
-            HibernateUtils.rollbackTransaction();
+            HibernateSessionManager.rollbackTransaction();
         }	
 	}
 
 	@Override
 	public void deleteTag(Tag tag) {
 		try {
-            HibernateUtils.beginTransaction();
+            HibernateSessionManager.beginTransaction();
             tagDAO.delete(tag);
-            HibernateUtils.commitTransaction();
+            HibernateSessionManager.commitTransaction();
         } catch (HibernateException ex) {
             System.out.println("Cos poszlo nie tak z usuwaniem!"+ ex.getMessage());
-            HibernateUtils.rollbackTransaction();
+            HibernateSessionManager.rollbackTransaction();
         }		
 	}
 
@@ -39,9 +39,9 @@ public class TagDAOProxyImpl implements TagDAOProxy{
 	public Tag getTagById(int id) {
 		Tag tag = null;
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			tag = tagDAO.findById(id);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (NonUniqueResultException ex) {
 			System.out.println("Query returned more than one results.");
 		} catch (HibernateException ex) {

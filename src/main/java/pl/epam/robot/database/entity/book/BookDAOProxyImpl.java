@@ -3,7 +3,7 @@ package pl.epam.robot.database.entity.book;
 import org.hibernate.HibernateException;
 import org.hibernate.NonUniqueResultException;
 
-import pl.epam.robot.database.HibernateUtils;
+import pl.epam.robot.database.HibernateSessionManager;
 import pl.epam.robot.database.dao.book.BookDAO;
 import pl.epam.robot.database.dao.book.BookDAOImpl;
 
@@ -14,21 +14,21 @@ public class BookDAOProxyImpl implements BookDAOProxy {
 	@Override
 	public void saveNewBook(Book book) {
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			bookDAO.save(book);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie tak z zapisywaniem ksiazki! " + ex.getMessage() + book.getTitleAndAuthor());
-			HibernateUtils.rollbackTransaction();
+			HibernateSessionManager.rollbackTransaction();
 		}
 	}
 
 	public Book findByBookTitleAndAuthor(String titleAndAuthor) {
 		Book book = null;
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			book = bookDAO.findByTitleAndAuthor(titleAndAuthor);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (NonUniqueResultException ex) {
 			System.out.println("Query returned more than one results.");
 		} catch (HibernateException ex) {
@@ -40,12 +40,12 @@ public class BookDAOProxyImpl implements BookDAOProxy {
 	@Override
 	public void deleteBook(Book book) {
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			bookDAO.delete(book);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie tak z usuwaniem!");
-			HibernateUtils.rollbackTransaction();
+			HibernateSessionManager.rollbackTransaction();
 		}
 	}
 

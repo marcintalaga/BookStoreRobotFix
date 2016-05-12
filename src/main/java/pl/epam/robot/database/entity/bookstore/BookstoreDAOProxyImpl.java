@@ -2,7 +2,7 @@ package pl.epam.robot.database.entity.bookstore;
 
 import org.hibernate.HibernateException;
 
-import pl.epam.robot.database.HibernateUtils;
+import pl.epam.robot.database.HibernateSessionManager;
 import pl.epam.robot.database.dao.bookstore.BookstoreDAO;
 import pl.epam.robot.database.dao.bookstore.BookstoreDAOImpl;
 
@@ -13,24 +13,24 @@ public class BookstoreDAOProxyImpl implements BookstoreDAOProxy {
 	@Override
 	public void saveNewBookstore(Bookstore bookstore) {
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			bookstoreDAO.save(bookstore);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie tak z zapisywaniem!" + ex.getMessage());
-			HibernateUtils.rollbackTransaction();
+			HibernateSessionManager.rollbackTransaction();
 		}
 	}
 
 	@Override
 	public void deleteBookstore(Bookstore bookstore) {
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			bookstoreDAO.delete(bookstore);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie tak z usuwaniem!");
-			HibernateUtils.rollbackTransaction();
+			HibernateSessionManager.rollbackTransaction();
 		}
 	}
 

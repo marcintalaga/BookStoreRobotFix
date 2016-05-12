@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import pl.epam.robot.database.HibernateUtils;
+import pl.epam.robot.database.HibernateSessionManager;
 
 /**
  * Implementation of GenericDAO interface
@@ -20,7 +20,7 @@ import pl.epam.robot.database.HibernateUtils;
 public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
 	protected Session getSession() {
-		return HibernateUtils.getSessionFactory().getCurrentSession();
+		return HibernateSessionManager.getSessionFactory().getCurrentSession();
 	}
 
 	@Override

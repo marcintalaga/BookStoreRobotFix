@@ -4,6 +4,10 @@
 	<groupId>pl.epam.Robot</groupId>
 	<artifactId>BookstoreRobot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<description> Basicly, BookStoreRobot® is a tool that will make your life better. 
+	This will keep things simple and enjoyable. Robot will collect data associated with books that are cheaper 
+	than usually or completelly for free! Instead of clicking and checking all bookstores that you are interested in, 
+	the Robot will do it for you. This is a tool that every wise man should have. For more info go to readme.md file.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<testng-version>6.9.10</testng-version>
@@ -46,6 +50,7 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito-version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-configuration</groupId>

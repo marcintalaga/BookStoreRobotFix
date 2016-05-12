@@ -2,7 +2,7 @@ package pl.epam.robot.database.entity.category;
 
 import org.hibernate.HibernateException;
 
-import pl.epam.robot.database.HibernateUtils;
+import pl.epam.robot.database.HibernateSessionManager;
 import pl.epam.robot.database.dao.category.CategoryDAO;
 import pl.epam.robot.database.dao.category.CategoryDAOImpl;
 
@@ -13,21 +13,21 @@ public class CategoryDAOProxyImpl implements CategoryDAOProxy {
 	@Override
 	public void saveNewCategory(Category category) {
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			categoryDAO.save(category);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie tak z zapisywaniem!" + ex.getMessage());
-			HibernateUtils.rollbackTransaction();
+			HibernateSessionManager.rollbackTransaction();
 		}
 	}
 
 	public Category findCategoryById(Integer id) {
 		Category category = null;
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			category = (Category) categoryDAO.findByID(Category.class, id);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie tak przy szukaniu po id!");
 		}
@@ -37,9 +37,9 @@ public class CategoryDAOProxyImpl implements CategoryDAOProxy {
 	@Override
 	public void deleteCategory(Category category) {
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			categoryDAO.delete(category);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie z usuwaniem!");
 		}
@@ -49,9 +49,9 @@ public class CategoryDAOProxyImpl implements CategoryDAOProxy {
 	public Category findCategoryByCategoryType(String categoryType) {
 		Category category = null;
 		try {
-			HibernateUtils.beginTransaction();
+			HibernateSessionManager.beginTransaction();
 			category = (Category) categoryDAO.findByCategoryType(categoryType);
-			HibernateUtils.commitTransaction();
+			HibernateSessionManager.commitTransaction();
 		} catch (HibernateException ex) {
 			System.out.println("Cos poszlo nie tak przy szukaniu po category type!");
 		}

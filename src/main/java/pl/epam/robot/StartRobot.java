@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.epam.robot.view.controller.Controller;
 
-/***
+/**
  * This is the point at which application beggins.
  * 
  * @author paulina

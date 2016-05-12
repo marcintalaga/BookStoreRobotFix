@@ -10,7 +10,7 @@ import org.hibernate.cfg.Configuration;
  * @author paulina
  *
  */
-public class HibernateUtils {
+public class HibernateSessionManager {
 
 	private static final SessionFactory sessionFactory;
 
@@ -28,21 +28,21 @@ public class HibernateUtils {
 	}
 
 	public static Session beginTransaction() {
-		Session hibernateSession = HibernateUtils.getSession();
+		Session hibernateSession = HibernateSessionManager.getSession();
 		hibernateSession.beginTransaction();
 		return hibernateSession;
 	}
 
 	public static void commitTransaction() {
-		HibernateUtils.getSession().getTransaction().commit();
+		HibernateSessionManager.getSession().getTransaction().commit();
 	}
 
 	public static void rollbackTransaction() {
-		HibernateUtils.getSession().getTransaction().rollback();
+		HibernateSessionManager.getSession().getTransaction().rollback();
 	}
 
 	public static void closeSession() {
-		HibernateUtils.getSession().close();
+		HibernateSessionManager.getSession().close();
 	}
 
 	public static Session getSession() {
