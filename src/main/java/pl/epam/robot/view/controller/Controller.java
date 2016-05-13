@@ -50,8 +50,6 @@ public class Controller extends AnchorPane implements Initializable {
 	private Button getBooksButton;
 	@FXML
 	private ComboBox<String> bookStoreComboBox;
-//	@FXML
-//	private ListView<Book> booksList;
 	@FXML
 	private TextField filterField;
 	@FXML
@@ -85,11 +83,10 @@ public class Controller extends AnchorPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//booksList.setItems(bookObservableList);
 		addBookStoresToBookStoresLists(bookStores);
 		bookStoreComboBox.setItems(bookStores);
 
-		// 0. Initialize the columns.
+		// column initialization
 		titleAndAuthor
 				.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTitleAndAuthor()));
 		category.setCellValueFactory(
@@ -98,20 +95,14 @@ public class Controller extends AnchorPane implements Initializable {
 				cellData -> new ReadOnlyStringWrapper(cellData.getValue().getBookstore().getName()));
 		tag.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTags().getContent()));
 
-		// 1. Wrap the ObservableList in a FilteredList (initially display all
-		// data).
 		FilteredList<Book> filteredData = new FilteredList<>(bookObservableList, p -> true);
 
-		// 2. Set the filter Predicate whenever the filter changes.
 		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
 			filteredData.setPredicate(book -> {
-				// If filter text is empty, display all books.
 				if (newValue == null || newValue.isEmpty()) {
 					return true;
 				}
 
-				// Compare first name and last name of every person with filter
-				// text.
 				String lowerCaseFilter = newValue.toLowerCase();
 
 				if (book.getTitleAndAuthor().toLowerCase().indexOf(lowerCaseFilter) != -1) {
@@ -127,14 +118,9 @@ public class Controller extends AnchorPane implements Initializable {
 			});
 		});
 
-		// 3. Wrap the FilteredList in a SortedList.
 		SortedList<Book> sortedData = new SortedList<>(filteredData);
-
-		// 4. Bind the SortedList comparator to the TableView comparator.
-		// Otherwise, sorting the TableView would have no effect.
 		sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
 
-		// 5. Add sorted (and filtered) data to the table.
 		bookTable.setItems(sortedData);
 	}
 
