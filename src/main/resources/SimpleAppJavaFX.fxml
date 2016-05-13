@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
 	<children>
 		<BorderPane layoutX="213.0" layoutY="93.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<top>
-				<MenuBar BorderPane.alignment="CENTER">
+				<MenuBar prefHeight="19.0" prefWidth="800.0" BorderPane.alignment="CENTER">
 					<menus>
 						<Menu mnemonicParsing="false" text="File">
 							<items>
@@ -18,39 +19,51 @@
 							</items>
 						</Menu>
 					</menus>
+					<effect>
+						<Glow />
+					</effect>
 				</MenuBar>
 			</top>
 			<right>
-				<VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+				<VBox prefHeight="371.0" prefWidth="98.0" BorderPane.alignment="CENTER">
 					<children>
-						<Button fx:id="addButton" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="100.0" text="Add">
+						<Button fx:id="addButton" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="28.0" prefWidth="100.0" text="Add">
 							<VBox.margin>
 								<Insets />
 							</VBox.margin>
 						</Button>
-						<Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemoveAction" prefHeight="25.0" prefWidth="104.0" text="Remove">
+						<Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemoveAction" prefHeight="29.0" prefWidth="97.0" text="Remove">
 							<VBox.margin>
 								<Insets />
 							</VBox.margin>
 						</Button>
-                  <Button fx:id="getBooksButton" mnemonicParsing="false" onAction="#handleAddBooksToListAction" prefHeight="25.0" prefWidth="102.0" text="Get Books" />
+						<Button fx:id="getBooksButton" mnemonicParsing="false" onAction="#handleAddBooksToListAction" prefHeight="51.0" prefWidth="100.0" text="Get Books" />
+						<Label text="Filtruj:" />
+						<TextField fx:id="filterField" />
 					</children>
 				</VBox>
 			</right>
 			<center>
-				<ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="371.0" prefViewportWidth="500.0">
+				<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="222.0" prefViewportHeight="371.0" prefViewportWidth="500.0" prefWidth="493.0">
+					<BorderPane.margin>
+						<Insets />
+					</BorderPane.margin>
 					<content>
-						<ListView fx:id="booksList" editable="true" prefHeight="367.0" prefWidth="496.0" BorderPane.alignment="CENTER" />
+						<TableView fx:id="bookTable" prefHeight="369.0" prefWidth="546.0">
+							<columns>
+								<TableColumn fx:id="titleAndAuthor" prefWidth="198.0" text="title and author" />
+								<TableColumn fx:id="category" minWidth="9.0" prefWidth="90.0" text="category" />
+								<TableColumn fx:id="bookstore" minWidth="3.0" text="bookstore" />
+								<TableColumn fx:id="tag" minWidth="3.0" prefWidth="185.0" text="tags" />
+							</columns>
+						</TableView>
 					</content>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
 				</ScrollPane>
 			</center>
 			<left>
-				<HBox>
+				<HBox prefHeight="371.0" prefWidth="120.0">
 					<children>
-						<ComboBox fx:id="bookStoreComboBox" prefHeight="25.0" prefWidth="207.0" BorderPane.alignment="TOP_LEFT">
+						<ComboBox fx:id="bookStoreComboBox" prefHeight="28.0" prefWidth="205.0" BorderPane.alignment="TOP_LEFT">
 							<value>
 								<String fx:value="Bookstores" />
 							</value>
